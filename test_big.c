@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_dtoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 14:53:06 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/04 15:56:12 by elanna           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 char	*add_chars_to_mall_str(char *mall_str, const char *cst,
@@ -45,14 +33,12 @@ int size_add)
 	{
 		stock_part[size_part] += 1;
 		ret = 0;
-		if (stock_part[size_part--] > '9' && size_part != 0)
+		if (stock_part[size_part--] > '9')
 		{
 			stock_part[size_part + 1] -= 10;
 			ret = 1;
 		}
 	}
-	if (ret != 0 && size_part == -1)
-		stock_part = add_chars_to_mall_str(stock_part, "1", 'f');
 	return (stock_part);
 }
 
@@ -81,73 +67,6 @@ char	*stock_init(char *stock_part, char *to_add, char int_or_frac)
 	stock_part = stock_fill(stock_part, to_add, size_part, size_add);
 	free(to_add);
 	return (stock_part);
-}
-
-char	*apply_dtwo_pten(unsigned int i)
-{
-	char			*to_add;
-	char			tmp;
-	unsigned int	y;
-	unsigned int	z;
-	char			rem;
-
-	y = 1;
-	if (!(to_add = malloc(sizeof(*to_add) * (i + 1))))
-		return (NULL);
-	to_add[0] = '5';
-	to_add[i] = 0;
-	while (y < i)
-	{
-		to_add[y++] = '0';
-		z = 0;
-		rem = 0;
-		while (z <= (y - 1))
-		{
-			tmp = (to_add[z] + '0') / 2 + (rem * 5);
-			rem = (to_add[z] - '0') % 2;
-			to_add[z++] = tmp;
-		}
-	}
-	return (to_add);
-}
-
-unsigned long long	convert_mant_to_frac(unsigned long long mant, short exp,
-unsigned int *i)
-{
-	*i = 1;
-	if (exp > 0)
-		return (mant << (exp + 1));
-	else if (exp == 0)
-		return (mant << 1);
-	*i = (unsigned int)(-exp);
-	return (mant);
-}
-
-char	*get_frac_part(unsigned long long mant, short exp)
-{
-	unsigned long long	frac_part;
-	char				*to_add;
-	unsigned int		i;
-	char				*stock_frac;
-
-	stock_frac = NULL;
-	frac_part = convert_mant_to_frac(mant, exp, &i);
-	if (frac_part == 0 || exp > 63)
-		return (ft_strdup("0"));
-	while (frac_part != 0)
-	{
-		if (((frac_part >> 63) & 1) == 0)
-		{
-			frac_part = frac_part << 1;
-			i++;
-			continue ;
-		}
-		to_add = apply_dtwo_pten(i);
-		frac_part = frac_part << 1;
-		stock_frac = stock_init(stock_frac, to_add, 'e');
-		i++;
-	}
-	return (stock_frac);
 }
 
 char	*del_front_zero(char *to_add, int approx_size)
@@ -187,7 +106,7 @@ char	*apply_ptwo(short exp)
 
 	i = 0;
 	curr_exp = 1;
-	approx_size = exp / 3 + 1;
+	approx_size = exp / 3;
 	if (!(to_add = malloc(sizeof(*to_add) * (approx_size + 1))))
 		return (NULL);
 	while (i < approx_size)
@@ -216,18 +135,18 @@ char	*get_big_int(unsigned long long int_part, short exp)
 	short	i;
 	char	*stock_big_int;
 
-	i = exp - 52;
+	i = exp - 53;
 	stock_big_int = NULL;
 	while (int_part != 0)
 	{
-		if ((int_part & 1) == 0)
+		if (((int_part >> 63) & 1) == 0)
 		{
-			int_part = int_part >> 1;
+			int_part = int_part << 1;
 			i++;
 			continue ;
 		}
 		to_add = apply_ptwo(i);
-		int_part = int_part >> 1;
+		int_part = int_part << 1;
 		stock_big_int = stock_init(stock_big_int, to_add, 'f');
 		i++;
 	}
@@ -238,17 +157,23 @@ char	*get_int_part(unsigned long long mant, short exp)
 {
 	unsigned long long	int_part;
 
+	ft_print_bin_rep(sizeof(mant), &mant);
+	printf("\n");
 	int_part = 0;
 	if (exp == 0)
 		int_part = 1;
 	else if (exp > 0 && exp <= 63)
 	{
 		int_part = mant >> (63 - exp);
+		ft_print_bin_rep(sizeof(int_part), &int_part);
+		printf("\n");
 		int_part = ft_bintodec(int_part, 0);
 	}
 	else if (exp > 63)
 	{
 		int_part = mant >> 11;
+		ft_print_bin_rep(sizeof(int_part), &int_part);
+		printf("\n");
 		return (get_big_int(int_part, exp));
 	}
 	return (ft_ullitoa(int_part));
@@ -314,6 +239,7 @@ char	*get_dtoa_number(unsigned long long mant, short exp, int precision)
 	char	*int_part;
 	char	*frac_part;
 
+	printf("exp is %i\n", exp);
 	if (exp == -1023)
 	{
 		mant = mant << 12;
@@ -341,6 +267,7 @@ char	*ft_dtoa(double dbl, int precision)
 	char				*number;
 
 	dbl_rep.d = dbl;
+	ft_print_bin_rep(sizeof(dbl), &dbl);
 	sign = dbl_rep.l >> 63;
 	exp = ((dbl_rep.l << 1) >> 53) - 1023;
 	mant = ((dbl_rep.l << 12) >> 12);
@@ -355,41 +282,13 @@ char	*ft_dtoa(double dbl, int precision)
 	return (number);
 }
 
-/*void	test(double dbl)
+int	main()
 {
+	double dbl;
 	char *str;
-	printf("printf : %.1000f\n", dbl);
-	str = ft_dtoa(dbl, 1000);
-	printf("mine   : %s\n", str);
-	free(str);
+	dbl = 4222222222222222222222222222222222.42;
 	str = ft_dtoa(dbl, 6);
-	printf("mine   : %s\n", str);
+	printf("mine : %s\n", str);
+	printf("orig : %f\n", dbl);
 	free(str);
-	printf("printf : %f\n", dbl);
-	printf("printf : %.1f\n", dbl);
-	str = ft_dtoa(dbl, 1);
-	printf("mine   : %s\n", str);
-	free(str);
-	printf("\n");
 }
-
-int main()
-{
-	double nbr;
-	nbr = 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001;
-	test(nbr);
-	test(19.99);
-	test(99.999);
-	test(0.25);
-	test(-0.25);
-	test(-42);
-	test(INFINITY);
-	test (-INFINITY);
-	test(NAN);
-	test(-NAN);
-	test(222222222222222222222022222222222222.20);
-	test(2);
-	test(0);
-	test(1);
-
-}*/
