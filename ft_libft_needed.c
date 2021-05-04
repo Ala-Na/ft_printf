@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:46:12 by elanna            #+#    #+#             */
-/*   Updated: 2021/04/14 11:28:28 by elanna           ###   ########.fr       */
+/*   Updated: 2021/04/29 14:13:50 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,3 +138,36 @@ char		*ft_itoa(int n)
 	return (arr);
 }
 
+size_t	ft_strlen(const char *s)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	char			c;
+	unsigned int	nb;
+
+	if (n < 0)
+	{
+		c = '-';
+		write(fd, &c, 1);
+		nb = -n;
+	}
+	else
+		nb = n;
+	if (nb / 10 > 0)
+		ft_putnbr_fd(nb / 10, fd);
+	c = '0' + (nb % 10);
+	write(fd, &c, 1);
+}

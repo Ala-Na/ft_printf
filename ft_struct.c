@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:46:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/04/13 16:24:49 by elanna           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:57:50 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_infos	*init_infos_struct()
 	infos_struct->plus = 0;
 	infos_struct->space = 0;
 	infos_struct->field = -1;
-	infos_struct->precision = 0;
+	infos_struct->precision = -1;
 	infos_struct->length = 0;
 	infos_struct->converter = 0;
 	infos_struct->format_size = 0;
