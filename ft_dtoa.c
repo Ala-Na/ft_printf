@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:53:06 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/04 15:56:12 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/05 20:53:48 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,33 @@ char front_or_end)
 	return (tmp);
 }
 
-char	*stock_fill(char *stock_part, char *to_add, int size_part,
-int size_add)
+void	stock_fill(char **stock_part, char *to_add, int s_part, int s_add)
 {
 	int ret;
 
 	ret = 0;
-	while (size_part >= 0 && size_add >= 0)
+	while (s_part >= 0 && s_add >= 0)
 	{
-		stock_part[size_part] += to_add[size_add--] - '0' + ret;
+		(*stock_part)[s_part] += to_add[s_add--] - '0' + ret;
 		ret = 0;
-		if (stock_part[size_part--] > '9')
+		if ((*stock_part)[s_part--] > '9')
 		{
-			stock_part[size_part + 1] -= 10;
+			(*stock_part)[s_part + 1] -= 10;
 			ret = 1;
 		}
 	}
-	while (ret != 0 && size_part >= 0)
+	while (ret != 0 && s_part >= 0)
 	{
-		stock_part[size_part] += 1;
+		(*stock_part)[s_part] += 1;
 		ret = 0;
-		if (stock_part[size_part--] > '9' && size_part != 0)
+		if ((*stock_part)[s_part--] > '9' && s_part != 0)
 		{
-			stock_part[size_part + 1] -= 10;
+			(*stock_part)[s_part + 1] -= 10;
 			ret = 1;
 		}
 	}
-	if (ret != 0 && size_part == -1)
-		stock_part = add_chars_to_mall_str(stock_part, "1", 'f');
-	return (stock_part);
+	if (ret != 0 && s_part == -1)
+		*stock_part = add_chars_to_mall_str(*stock_part, "1", 'f');
 }
 
 char	*stock_init(char *stock_part, char *to_add, char int_or_frac)
@@ -78,7 +76,7 @@ char	*stock_init(char *stock_part, char *to_add, char int_or_frac)
 		free(to_add);
 		return (NULL);
 	}
-	stock_part = stock_fill(stock_part, to_add, size_part, size_add);
+	stock_fill(&stock_part, to_add, size_part, size_add);
 	free(to_add);
 	return (stock_part);
 }
@@ -152,9 +150,9 @@ char	*get_frac_part(unsigned long long mant, short exp)
 
 char	*del_front_zero(char *to_add, int approx_size)
 {
-	int	nbr_zero;
-	int	i;
-	int	y;
+	int		nbr_zero;
+	int		i;
+	int		y;
 	char	*tmp;
 
 	i = 0;
@@ -167,7 +165,7 @@ char	*del_front_zero(char *to_add, int approx_size)
 	}
 	if (nbr_zero == 0)
 		return (to_add);
-	if (!(tmp = malloc(sizeof(*to_add) * (approx_size - nbr_zero + 1))))
+	if (!(tmp = malloc(sizeof(*tmp) * (approx_size - nbr_zero + 1))))
 		return (NULL);
 	while (to_add[i] != 0)
 		tmp[y++] = to_add[i++];
@@ -176,38 +174,44 @@ char	*del_front_zero(char *to_add, int approx_size)
 	return (tmp);
 }
 
-char	*apply_ptwo(short exp)
+void	apply_ptwo_fill(char **to_add, int approx_size)
 {
-	char	*to_add;
+	char	tmp;
+	char	rem;
+	int		i;
+
+	rem = 0;
+	i = approx_size - 1;
+	while (i >= 0)
+	{
+		tmp = ((((*to_add)[i] - '0') * 2) % 10) + rem;
+		rem = (((*to_add)[i] - '0') * 2) - ((((*to_add)[i] - '0') * 2) % 10);
+		rem /= 10;
+		(*to_add)[i--] = tmp + '0';
+	}
+}
+
+void	apply_ptwo_init(short exp, char **to_add)
+{
 	int	approx_size;
 	int	curr_exp;
 	int	i;
-	int	rem;
-	char 	tmp;
 
 	i = 0;
 	curr_exp = 1;
 	approx_size = exp / 3 + 1;
-	if (!(to_add = malloc(sizeof(*to_add) * (approx_size + 1))))
-		return (NULL);
+	if (!(*to_add = malloc(sizeof(**to_add) * (approx_size + 1))))
+		return ;
 	while (i < approx_size)
-		to_add[i++] = '0';
-	to_add[i--] =  0;
-	to_add[i] = '2';
+		(*to_add)[i++] = '0';
+	(*to_add)[i--] = 0;
+	(*to_add)[i] = '2';
 	while (curr_exp < exp)
 	{
-		rem = 0;
-		i = approx_size - 1;
-		while (i >= 0)
-		{
-			tmp = (((to_add[i] - '0') * 2) % 10) + rem;
-			rem = (((to_add[i] - '0') * 2) - (((to_add[i] - '0') * 2) % 10)) / 10;
-			to_add[i--] = tmp + '0';
-		}
+		apply_ptwo_fill(to_add, approx_size);
 		curr_exp++;
 	}
-	to_add = del_front_zero(to_add, approx_size);
-	return (to_add);
+	*to_add = del_front_zero(*to_add, approx_size);
 }
 
 char	*get_big_int(unsigned long long int_part, short exp)
@@ -218,6 +222,7 @@ char	*get_big_int(unsigned long long int_part, short exp)
 
 	i = exp - 52;
 	stock_big_int = NULL;
+	to_add = NULL;
 	while (int_part != 0)
 	{
 		if ((int_part & 1) == 0)
@@ -226,7 +231,7 @@ char	*get_big_int(unsigned long long int_part, short exp)
 			i++;
 			continue ;
 		}
-		to_add = apply_ptwo(i);
+		apply_ptwo_init(i, &to_add);
 		int_part = int_part >> 1;
 		stock_big_int = stock_init(stock_big_int, to_add, 'f');
 		i++;
@@ -308,7 +313,8 @@ char	*get_round_number(char *int_part, char *frac_part, int precision)
 	return (number);
 }
 
-char	*get_dtoa_number(unsigned long long mant, short exp, int precision)
+char	*get_dtoa_number(unsigned long long mant, short exp, int precision,
+int show_exp)
 {
 	char	*number;
 	char	*int_part;
@@ -326,13 +332,16 @@ char	*get_dtoa_number(unsigned long long mant, short exp, int precision)
 		int_part = get_int_part(mant, exp);
 	}
 	frac_part = get_frac_part(mant, exp);
-	number = get_round_number(int_part, frac_part, precision);
+	if (show_exp == 0)
+		number = get_round_number(int_part, frac_part, precision);
+	else
+		number = get_round_exp_number(int_part, frac_part, precision);
 	free(int_part);
 	free(frac_part);
 	return (number);
 }
 
-char	*ft_dtoa(double dbl, int precision)
+char	*ft_dtoa(double dbl, int precision, int show_exp)
 {
 	short				sign;
 	short				exp;
@@ -349,7 +358,7 @@ char	*ft_dtoa(double dbl, int precision)
 	else if (exp == 1024 && mant != 0)
 		number = ft_strdup("nan");
 	else
-		number = get_dtoa_number(mant, exp, precision);
+		number = get_dtoa_number(mant, exp, precision, show_exp);
 	if (sign == 1)
 		number = add_chars_to_mall_str(number, "-", 'f');
 	return (number);

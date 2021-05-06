@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:48 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/04 16:22:28 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/06 17:10:49 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,41 @@ unsigned long long	ft_bintodec(unsigned long long bin, int start);
 /* Fonctions nécessaires à dtoa (ft_dtoa.c) */
 char	*add_chars_to_mall_str(char *mall_str, const char *cst,
 char front_or_end);
-char	*stock_fill(char *stock_frac, char *to_add, int size_frac,
-int size_add);
+void	stock_fill(char **stock_frac, char *to_add, int s_frac,
+int s_add);
 char	*stock_init(char *stock_frac, char *to_add, char int_or_frac);
 char	*apply_dtwo_pten(unsigned int i);
 unsigned long long	convert_mant_to_frac(unsigned long long mant, short exp,
 unsigned int *i);
 char	*get_frac_part(unsigned long long mant, short exp);
-char	*fel_front_zero(char *to_add, int approx_size);
-char	*apply_ptwo(short exp);
+char	*del_front_zero(char *to_add, int approx_size);
+void	apply_ptwo_fill(char **to_add, int approx_size);
+void	apply_ptwo_init(short exp, char **to_add);
 char	*get_big_int(unsigned long long int_part, short exp);
 char	*get_int_part(unsigned long long mant, short exp);
 void	do_rounding(char **number, char *frac_part,
 unsigned i, unsigned size);
 char	*get_round_number(char *int_part, char *frac_part, int precision);
-char	*get_dtoa_number(unsigned long long mant, short exp, int precision);
-char	*ft_dtoa(double dbl, int precision);
+char	*get_dtoa_number(unsigned long long mant, short exp, int precision, int show_exp);
+char	*ft_dtoa(double dbl, int precision, int show_exp);
 
 /* Fonctions nécessaires pour le dtoa with exp, réutilise certaines fonctions de 
 ft_dtoa.c (ft_exp.c) */
-char	*add_exp(int exp, char *number);
-void	fill_round_exp_number(char **number, int size, int num_size);
+char	*add_exp(int exp, char *number, int shortest_rep);
+void	fill_round_exp_number(char **number, int size, int num_size, int limit_size);
+void	exp_rounding_operation(char **number, int *exp, int i, int num_size);
 void	do_exp_rounding(char **number, int *exp, int precision);
 char	*get_round_exp_number(char *int_part, char *frac_part, int precision);
-char	*get_dtoa_exp_number(unsigned long long mant, short exp, int precision);
-char	*ft_dtoa_with_exp(double dbl, int precision);
+
+/* Fonctions pour la plus courte representation selon dtoa (ft_check_exp.c) */
+void	del_last_zero(char **number, int size);
+void	exp_after_rounding(char **number, int *exp, int precision, int int_size);
+char	*check_exp_for_format(int exp, char *int_part, char *frac_part,
+int precision);
+char	*get_number_shortest_rep(char *int_part, char *frac_part, int precision);
+char	*get_dtoa_shortest_rep(unsigned long long mant, short exp, int precision);
+char	*ft_dtoa_shortest_rep(double dbl, int precision);
+
 
 /* Fonctions relatives à la structure (ft_struct.c) */
 t_infos	*init_infos_struct();
