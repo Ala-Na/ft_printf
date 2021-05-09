@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:53:06 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/05 20:53:48 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/07 22:42:03 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,18 +259,15 @@ char	*get_int_part(unsigned long long mant, short exp)
 	return (ft_ullitoa(int_part));
 }
 
-void	do_rounding(char **number, char *frac_part,
-unsigned i, unsigned size)
+void	bankers_or_usual_rounding(char **number, char **frac_part, unsigned i)
 {
-	while (i < size)
+	int y;
+
+	y = 0;
+	if ((*frac_part)[y] >= '5' && (*frac_part)[y] <= '9')
 	{
-		if (*frac_part)
-			(*number)[i++] = *frac_part++;
-		else
-			(*number)[i++] = '0';
-	}
-	if (*frac_part > '5' && *frac_part <= '9')
-	{
+		if ((*frac_part)[y + 1] == 0 && ((*number)[--i] % 2) == 0)
+			return ;
 		(*number)[--i] += 1;
 		while ((*number)[i] > '9')
 		{
@@ -286,6 +283,19 @@ unsigned i, unsigned size)
 				(*number)[i] += 1;
 		}
 	}
+}
+
+void	do_rounding(char **number, char *frac_part,
+unsigned i, unsigned size)
+{
+	while (i < size)
+	{
+		if (*frac_part)
+			(*number)[i++] = *frac_part++;
+		else
+			(*number)[i++] = '0';
+	}
+	bankers_or_usual_rounding(number, &frac_part, i);
 }
 
 char	*get_round_number(char *int_part, char *frac_part, int precision)

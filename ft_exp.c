@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 21:54:56 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/06 17:03:45 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/09 12:13:56 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ int limit_size)
 	*number = round_number;
 }
 
-void	exp_rounding_operation(char **number, int *exp, int i, int num_size)
+void	exp_rounding_operation(char **number, int *exp, int i)
 {
 	if ((*number)[i] >= '5' && (*number)[i] <= '9')
 	{
+		if ((*number)[i + 1] == 0 && (i > 0 && ((*number)[i - 1] % 2) == 0))
+			return ;
 		(*number)[--i] += 1;
 		while (i >= 0 && (*number)[i] > '9')
 		{
@@ -102,9 +104,9 @@ void	do_exp_rounding(char **number, int *exp, int precision)
 	if (precision != 0)
 		size += 1;
 	num_size = ft_strlen(*number) + 1;
-	if (i <= num_size)
+	if (i > 0 && i < num_size)
 	{
-		exp_rounding_operation(number, exp, i, num_size);
+		exp_rounding_operation(number, exp, i);
 	}
 	limit_size = size;
 	if (num_size < size)

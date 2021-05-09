@@ -6,17 +6,17 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:15:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/04/15 17:02:58 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/09 17:25:25 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 # include "ft_printf.h"
 
-/* Est-ce que je malloc tout où est-ce que je tente des string const ?*/
-
 char	*c_converter(va_list *infos)
 {
-	char *str[2];
+	char	*str;
 
+	if (!(str = malloc(sizeof(*str) * 2)))
+		return (NULL);
 	str[0] = (char)va_arg(*infos, char);
 	str[1] = '\0';
 	return (str);
@@ -24,9 +24,18 @@ char	*c_converter(va_list *infos)
 
 char	*s_converter(va_list *infos)
 {
-	char *str;
+	char	*tmp;
+	char	*str;
+	int	size;
 
-	str = (char*)va_arg(*infos, char*);
+	tmp = (char*)va_arg(*infos, char*);
+	size = ft_strlen(tmp);
+	if(!(str = malloc(sizeof(*str) * (size + 1))))
+		return (NULL);
+	size = 0;
+	while (tmp[size] != 0)
+		str[size] = tmp[size++];
+	str[size] = '\0';
 	return (str);
 }
 
@@ -58,8 +67,10 @@ char	*i_d_converter(va_list *infos, char length)
 
 char	*percent_converter()
 {
-	char *str;
+p	char	*str;
 
+	if (!(str = malloc(sizeof(*str) * 2)))
+		return (NULL);
 	str[0] = '%';
 	str[1] = '\0';
 	return (str);
@@ -91,7 +102,7 @@ char	*u_converter(va_list *infos, char length)
 	return (str);
 }
 
-char	*x_converter(va_list *infos, char length)
+char	*x_converter(va_list *infos, char length, char hash)
 {
 	char		*str;
 	unsigned int	un_integer;
@@ -114,10 +125,12 @@ char	*x_converter(va_list *infos, char length)
 			un_integer = (unsigned long long)va_list(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789abcdef");
 	}
+	if (hash)
+		str = add_chars_to_mall_str(str, "0x", 'f');
 	return (str);
 }
 
-char	*X_converter(va_list *infos, char length)
+char	*X_converter(va_list *infos, char length, char hash)
 {
 	char		*str;
 	unsigned int	un_integer;
@@ -140,6 +153,8 @@ char	*X_converter(va_list *infos, char length)
 			un_integer = (unsigned long long)va_list(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789ABCDEF");
 	}
+	if (hash)
+		str = add_chars_to_mall_str(str, "0X", 'f');
 	return (str);
 }
 
@@ -159,6 +174,34 @@ char	*f_converter(va_list *infos, t_infos *infos_struct)
 	double	dbl;
 
 	dbl = (double)va_list(*infos, double);
-	str = ft_dtoa(dbl, infos_struct->precision);
+	str = ft_dtoa(dbl, infos_struct->precision, 0);
 	return (str);
+}
+
+char	*e_converter(va_list *infos, t_infos *infos_struct)
+{
+	char	*str;
+	double	dbl;
+
+	dbl = (double)va_list(*infos, double);
+	str = ft_dtoa(dbl, infos_struct->precision, 1);
+	return (str);
+}
+
+char	*g_converter(va_list *infos, t_infos *infos_struct)
+{
+	char	*str;
+	double	dbl;
+
+	dbl = (double)va_list(*infos, double);
+	str = ft_dtoa_shortest_rep(dbl, infos_struct->precision, infos_struct->hash);
+	return (str);
+}
+
+char	*n_converter(char *str)
+{
+	int len;
+
+	len = ft_strlen(str);
+	return (ft_itoa(len));
 }

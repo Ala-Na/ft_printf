@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:48 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/06 17:10:49 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:36:17 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	apply_ptwo_fill(char **to_add, int approx_size);
 void	apply_ptwo_init(short exp, char **to_add);
 char	*get_big_int(unsigned long long int_part, short exp);
 char	*get_int_part(unsigned long long mant, short exp);
+void	bankers_or_usual_rounding(char **number, char **frac_part, unsigned i);
 void	do_rounding(char **number, char *frac_part,
 unsigned i, unsigned size);
 char	*get_round_number(char *int_part, char *frac_part, int precision);
@@ -98,13 +99,15 @@ char	*ft_dtoa(double dbl, int precision, int show_exp);
 ft_dtoa.c (ft_exp.c) */
 char	*add_exp(int exp, char *number, int shortest_rep);
 void	fill_round_exp_number(char **number, int size, int num_size, int limit_size);
-void	exp_rounding_operation(char **number, int *exp, int i, int num_size);
+void	exp_rounding_operation(char **number, int *exp, int i);
 void	do_exp_rounding(char **number, int *exp, int precision);
 char	*get_round_exp_number(char *int_part, char *frac_part, int precision);
 
 /* Fonctions pour la plus courte representation selon dtoa (ft_check_exp.c) */
 void	del_last_zero(char **number, int size);
-void	exp_after_rounding(char **number, int *exp, int precision, int int_size);
+int	exp_after_rounding(char **number, int exp, int precision, int int_size);
+void	adjust_precision(char *int_part, char *frac_part, int *precision);
+void	adjust_number(char **number);
 char	*check_exp_for_format(int exp, char *int_part, char *frac_part,
 int precision);
 char	*get_number_shortest_rep(char *int_part, char *frac_part, int precision);
@@ -128,8 +131,22 @@ void	stock_infos_parsed(t_infos *infos_struct, char c);
 /* Fonctions relatives a la translation (ft_translation.c) */
 char	*ft_translate_format(t_infos *infos_struct, va_list *infos);
 
-/* Fonctions relatives aux converters */
+/* Fonctions relatives aux convertersi, toutes fournissent des str malloced */
+char	*c_converter(va_list *infos);
+char	*s_converter(va_list *infos);
+char	*i_d_converter(va_list *infos, char length);
+char	*percent_converter();
+char	*u_converter(va_list *infos, char length);
+char	*x_converter(va_list *infos, char length, char hash);
+char	*X_converter(va_list *infos, char length, char hash);
+char	*p_converter(va_list *infos);
+char	*f_converter(va_list *infos, t_infos *infos_struct);
+char	*e_converter(va_list *infos, t_infos *infos_struct);
+char	*g_converter(va_list *infos, t_infos *infos_struct);
+char	*n_converter(char *str);
 
+/* Fonctions relatives au flags */
+char	*apply_hash(t_infos *infos_struct, char *str);
 
 /* Fonctions du fichier principal (ft_printf.c) */
 int	ft_printf(const char *format, ...);

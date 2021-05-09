@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:36:49 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/06 17:10:25 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/09 17:07:05 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ void	del_last_zero(char **number, int size)
 	*number = tmp;
 }
 
-void	exp_after_rounding(char **number, int *exp, int precision, int int_size)
+int	exp_after_rounding(char **number, int exp, int precision, int int_size)
 {
 	int	i;
-	int	size;
 	int	num_size;
 
-	size = precision + 1 - int_size;
-	i = size;
-	if (precision != 0)
-		size += 1;
+	if (int_size < precision)
+		i = precision + 1 - int_size;
+	else
+		i = precision + 1;
 	num_size = ft_strlen(*number);
-	if (i <= num_size)
+	if (i > 0 && i <= num_size)
 	{
 		if ((*number)[i] >= '5' && (*number)[i] <= '9')
 		{
@@ -60,12 +59,45 @@ void	exp_after_rounding(char **number, int *exp, int precision, int int_size)
 					i--;
 				else if (i == 0)
 				{
-					*exp += 1;
+					exp += 1;
 					break ;
 				}
 			}
 		}
 	}
+	return (exp);
+}
+
+void	adjust_precision(char *int_part, char *frac_part, int *precision)
+{
+	int i;
+
+	i = 0;
+	if (int_part[0] == '0')
+	{
+		*precision += 1;
+		while (frac_part[i++] == '0')
+			*precision += 1;
+	}
+}
+
+void	adjust_number(char **number)
+{
+	int		i;
+	int		y;
+	char	*tmp;
+
+	i = 0;
+	y = 0;
+	while ((*number)[i] == '0')
+		i++;
+	if (!(tmp = malloc(sizeof(*tmp) * (ft_strlen(*number) - i + 1))))
+		return ;
+	while ((*number)[i] != 0)
+		tmp[y++] = (*number)[i++];
+	tmp[y] = 0;
+	free(*number);
+	*number = tmp;
 }
 
 char	*check_exp_for_format(int exp, char *int_part, char *frac_part,
@@ -73,20 +105,23 @@ int precision)
 {
 	char	*number;
 	int		int_size;
+	int		exp_cpy;
 
 	int_size = ft_strlen(int_part);
 	if (exp >= 0 && int_part[0] != '0')
 		number = ft_strjoin(int_part, frac_part);
 	else
 		number = ft_strdup(frac_part);
-	exp_after_rounding(&number, &exp, precision, int_size);
-	if (exp <= -4 || exp > precision)
+	exp_cpy = exp_after_rounding(&number, exp, precision, int_size);
+	if (exp_cpy <= -4 || exp_cpy >= precision)
 	{
+		adjust_number(&number);
 		do_exp_rounding(&number, &exp, precision - 1);
 		number = add_exp(exp, number, 1);
 	}
 	else
 	{
+		adjust_precision(int_part, frac_part, &precision);
 		free(number);
 		number = get_round_number(int_part, frac_part, precision - int_size);
 		if (ft_strchr(number, '.'))
@@ -100,19 +135,20 @@ char	*get_number_shortest_rep(char *int_part, char *frac_part, int precision)
 	int		exp;
 	char	*number;
 	int		int_size;
+	int		i;
 
 	exp = 0;
+	i = 0;
 	int_size = ft_strlen(int_part);
 	if (int_part[0] != '0')
 		exp = ft_strlen(int_part) - 1;
 	else
 	{
-		while (*frac_part == '0')
+		while (i < ft_strlen(frac_part) && frac_part[i++] == '0')
 		{
 			exp--;
-			frac_part++;
 		}
-		if (*frac_part != 0)
+		if (frac_part[i] != 0)
 			exp--;
 		else
 			exp = 0;
@@ -128,6 +164,8 @@ int precision)
 	char	*int_part;
 	char	*frac_part;
 
+	if (precision == 0)
+		precision = 1;
 	if (exp == -1023)
 	{
 		mant = mant << 12;
@@ -171,11 +209,13 @@ char	*ft_dtoa_shortest_rep(double dbl, int precision)
 
 /*void	test(double nbr)
 {
-	int precision = 99;
+	int precision = 11;
 	char *str_g = ft_dtoa_shortest_rep(nbr, precision);
-	char *str_f = ft_dtoa(nbr, 50, 0);
-	char *str_e = ft_dtoa(nbr, 50, 1);
-	printf("F : %s\nR : %.50f\nE : %s\nR : %.50e\nG : %s\nR : %.99g\n\n", str_f, nbr, str_e, nbr, str_g, nbr);
+	char *str_f = ft_dtoa(nbr, precision, 0);
+	char *str_e = ft_dtoa(nbr, precision, 1);
+	printf("F : %s\nR : %.*f\n", str_f, precision, nbr);
+	printf("E : %s\nR : %.*e\n", str_e, precision, nbr);
+	printf("G : %s\nR : %.*g\n\n", str_g, precision, nbr);
 	free(str_g);
 	free(str_f);
 	free(str_e);
@@ -210,4 +250,7 @@ int main()
 	test(425896315587899);
 	test(22222222228963214522222222222222222222.20);
 	test(100000000000);
+	test(0.56);
+	test(0.056);
+	test(0.5);
 }*/
