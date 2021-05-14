@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 17:59:13 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 22:05:10 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ char	*translate_flags(t_infos *infos_struct, char **str)
 
 	new = *str;
 	if (infos_struct->converter == 'n')
-		return (*str);
+		return (new);
 	if (infos_struct->hash == 1)
-		new = apply_hash(infos_struct, str);
+		new = apply_hash(infos_struct, &new);
 	if (infos_struct->precision != -1)
-		new = apply_precision(infos_struct, str);
+		new = apply_precision(infos_struct, &new);
 	if (infos_struct->minus == 1)
-		new = apply_minus(infos_struct, str);
+		new = apply_minus(infos_struct, &new);
 	else if (infos_struct->field != -1)
-		new = apply_field_width(infos_struct, str);
+		new = apply_field_width(infos_struct, &new);
 	if (infos_struct->zero == 1)
-		new = apply_zero(infos_struct, str);
+		new = apply_zero(infos_struct, &new);
 	if (infos_struct->plus == 1)
-		new = apply_plus(infos_struct, str);
+		new = apply_plus(infos_struct, &new);
 	else if (infos_struct->space == 1)
-		new = apply_space(infos_struct, str);
+		new = apply_space(infos_struct, &new);
 	return (new);
 }
 

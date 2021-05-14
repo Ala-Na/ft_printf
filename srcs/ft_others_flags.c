@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 23:41:25 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 16:08:24 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 22:05:01 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ char	*apply_zero(t_infos *infos_struct, char **str)
 char	*apply_minus(t_infos *infos_struct, char **str)
 {
 	int		i;
-	int		format_size;
+	int		field_size;
 	char	*minus_str;
 
 	i = 0;
-	format_size = infos_struct->format_size;
-	if (format_size < (int)ft_strlen(*str))
+	field_size = infos_struct->field;
+	if (field_size < (int)ft_strlen(*str))
 		return (*str);
-	if (!(minus_str = malloc(sizeof(*minus_str) * (format_size + 1))))
+	if (!(minus_str = malloc(sizeof(*minus_str) * (field_size + 1))))
 		return (*str);
 	while ((*str)[i] != 0)
 	{
 		minus_str[i] = (*str)[i];
 		i++;
 	}
-	while (i < format_size)
+	while (i < field_size)
 	{
 		minus_str[i] = ' ';
 		i++;

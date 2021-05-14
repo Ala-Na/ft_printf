@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:31:23 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 16:11:18 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:51:28 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*apply_field_width(t_infos *infos_struct, char **str)
 
 	i = 0;
 	y = 0;
-	width = infos_struct->format_size;
+	width = infos_struct->field;
 	if (infos_struct->minus == 1 || (int)ft_strlen(*str) >= width)
 		return (*str);
 	if (!(field_str = malloc(sizeof(*field_str) * (width + 1))))
@@ -41,10 +41,12 @@ void	apply_precision_on_str(char **preci_str, char *str, int precision)
 	int	size;
 
 	size = ft_strlen(str);
-	if (size <= precision)
+	if (size <= precision ||
+		!(*preci_str = malloc(sizeof(**preci_str) * (precision + 1))))
+	{
+		(*preci_str) = ft_strdup(str);
 		return ;
-	if (!(*preci_str = malloc(sizeof(**preci_str) * (precision + 1))))
-		return ;
+	}
 	i = 0;
 	while (i < precision)
 	{
@@ -69,10 +71,12 @@ void	apply_precision_on_number(char **preci_str, char *str, int precision)
 		(str[i] >= 'a' && str[i] <= 'f')
 		|| (str[i] >= 'A' && str[i] <= 'F'))
 		size++;
-	if (size >= precision)
+	if (size >= precision ||
+		!(*preci_str = malloc(sizeof(**preci_str) * (precision + 1))))
+	{
+		(*preci_str) = ft_strdup(str);
 		return ;
-	if (!(*preci_str = malloc(sizeof(**preci_str) * (precision + 1))))
-		return ;
+	}
 	i = 0;
 	while (i < precision - size)
 		(*preci_str)[i++] = '0';
@@ -87,7 +91,6 @@ char	*apply_precision(t_infos *infos_struct, char **str)
 	char	conv;
 	char	*preci_str;
 
-	preci_str = NULL;
 	precision = infos_struct->precision;
 	conv = infos_struct->converter;
 	if (!(ft_strchr("diuxXs", conv)))

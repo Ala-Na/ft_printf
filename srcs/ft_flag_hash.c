@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 16:00:51 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:56:15 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ char		*apply_hash(t_infos *infos_struct, char **str)
 	char	*hash_str;
 
 	conv = infos_struct->converter;
-	if (conv != 'e' && conv != 'f' && conv != 'g' && !(ft_strchr(*str, 'i'))
-		&& !(ft_strchr(*str, 'n')))
+	if ((conv != 'e' && conv != 'f' && conv != 'g') || ft_strchr(*str, 'i')
+		|| ft_strchr(*str, 'n'))
 		return (*str);
 	hash_str = *str;
 	if (!(ft_strchr(*str, '.')))

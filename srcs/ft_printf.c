@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 17:57:28 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 22:02:50 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,10 @@ int			ft_printf(const char *format, ...)
 	}
 	va_end(infos);
 	return (n_writt_char);
+}
+
+int	main()
+{
+	ft_printf("coucou %- *.12s|\n", 21 ,"les gens");
+	printf("coucou %-*.12s|\n", 21 ,"les gens");
 }
