@@ -6,21 +6,22 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:46:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/04/15 11:57:50 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 15:57:09 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//Toutes les valeurs sont placées à 0. 
-//Les valeurs binaires (présent ou non présent) seront mise à 1.
-//field est placé par -1 par défaut (=taille nécessaire), 
-//sinon sa valeur.
-//precision est initialisée à 0, selon le man, sauf spécifiée.
-//valid permet juste de stocker si une erreur de format a été
-//rencontrée. Si oui, tout est write tel quel à l'exception
-//des length modifier, en étant stocké dans la string invalid.
-t_infos	*init_infos_struct()
+/*
+** All values are initially set at 0 (except 'field' and 'precision' at -1,
+** to distinguish it from 0).
+** Binary values are set to 1 when the corresponding flag is present.
+** 'valid' is only useful to know if the format is valid, and if it can be
+** translated. If not, the string '*invalid' can be print (but it does not
+** contains length modifiers).
+*/
+
+t_infos	*init_infos_struct(void)
 {
 	t_infos	*infos_struct;
 

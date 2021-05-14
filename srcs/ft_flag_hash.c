@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*   ft_flag_hash.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/09 23:36:45 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:00:51 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ static void	fill_hashed_g(char **str, char **hash, int s_nbr, int precision)
 static char	*apply_hash_on_g(int precision, char **str)
 {
 	int		i;
-	int		y;
 	int		s_nbr;
 	char	*hash;
 
 	i = 0;
-	y = 0;
 	s_nbr = 0;
 	while ((*str)[0] == '0' && ((*str)[i] == '0' || (*str)[i] == '.'))
 		i++;
@@ -76,22 +74,23 @@ static void	hash_exp_case(char *str, char **hash_str)
 	(*hash_str)[y] = 0;
 }
 
-char	*apply_hash(t_infos *infos_struct, char *str)
+char		*apply_hash(t_infos *infos_struct, char **str)
 {
 	char	conv;
 	char	*hash_str;
 
 	conv = infos_struct->converter;
-	if (conv != 'e' && conv != 'f' && conv != 'g' && !(ft_strchr(str, 'i')) && !(ft_strchr(str, 'n')))
-		return (str);
-	hash_str = str;
-	if (!(ft_strchr(str, '.')))
+	if (conv != 'e' && conv != 'f' && conv != 'g' && !(ft_strchr(*str, 'i'))
+		&& !(ft_strchr(*str, 'n')))
+		return (*str);
+	hash_str = *str;
+	if (!(ft_strchr(*str, '.')))
 	{
-		if (ft_strchr(str, 'e'))
-			hash_exp_case(str, &hash_str);
-		else 
-			hash_str = add_chars_to_mall_str(str, ".", 'e');
-		free(str);
+		if (ft_strchr(*str, 'e'))
+			hash_exp_case(*str, &hash_str);
+		else
+			hash_str = add_chars_to_mall_str(*str, ".", 'e');
+		free(*str);
 	}
 	if (conv == 'g')
 		hash_str = apply_hash_on_g(infos_struct->precision, &hash_str);
