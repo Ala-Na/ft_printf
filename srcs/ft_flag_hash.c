@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 21:56:15 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/15 16:25:13 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,34 @@ static void	hash_exp_case(char *str, char **hash_str)
 	(*hash_str)[y] = 0;
 }
 
+static char	*hash_x_case(char **str, char conv, int precision)
+{
+	char *tmp;
+
+	if (precision != -1 && (*str)[0] == '0' && (*str)[1] == '1')
+	{
+		if (conv == 'x')
+			(*str)[1] = 'x';
+		else
+			(*str)[1] = 'X';
+		return (*str);
+	}
+	if (conv == 'x')
+		tmp = ft_strjoin("0x", *str);
+	else
+		tmp = ft_strjoin("0X", *str);
+	free(*str);
+	return (tmp);
+}
+
 char		*apply_hash(t_infos *infos_struct, char **str)
 {
 	char	conv;
 	char	*hash_str;
 
 	conv = infos_struct->converter;
+	if (conv == 'x' || conv == 'X')
+		return (hash_x_case(str, conv, infos_struct->precision));
 	if ((conv != 'e' && conv != 'f' && conv != 'g') || ft_strchr(*str, 'i')
 		|| ft_strchr(*str, 'n'))
 		return (*str);

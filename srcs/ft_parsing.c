@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 21:34:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 22:00:40 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/15 17:34:49 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_infos	*parse_format(const char **format, va_list *infos)
 	if (*s == '*' || ft_isdigit(*s))
 		s = parse_field_width(infos, infos_struct, s);
 	if (*s == '.')
-		s = parse_precision(infos_struct, s);
+		s = parse_precision(infos, infos_struct, s);
 	if (*s == 'l' || *s == 'h')
 		s = parse_length(infos_struct, s);
 	if (ft_strchr(g_conversion_specifier, *s))

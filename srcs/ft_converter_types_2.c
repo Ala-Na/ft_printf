@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_converter_types.c                               :+:      :+:    :+:   */
+/*   ft_converter_types_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:15:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 14:54:39 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 21:47:04 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char		*u_converter(va_list *infos, char length)
 	return (str);
 }
 
-char		*x_converter(va_list *infos, char length, char hash)
+char		*x_converter(va_list *infos, char length)
 {
 	char			*str;
 	unsigned int	un_integer;
@@ -96,12 +96,10 @@ char		*x_converter(va_list *infos, char length, char hash)
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789abcdef");
 	}
-	if (hash)
-		str = add_chars_to_mall_str(str, "0x", 'f');
 	return (str);
 }
 
-char		*grand_x_converter(va_list *infos, char length, char hash)
+char		*grand_x_converter(va_list *infos, char length)
 {
 	char			*str;
 	unsigned int	un_integer;
@@ -124,7 +122,5 @@ char		*grand_x_converter(va_list *infos, char length, char hash)
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789ABCDEF");
 	}
-	if (hash)
-		str = add_chars_to_mall_str(str, "0X", 'f');
 	return (str);
 }

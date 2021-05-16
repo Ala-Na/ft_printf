@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 22:05:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 21:00:18 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ char	*translate_flags(t_infos *infos_struct, char **str)
 	new = *str;
 	if (infos_struct->converter == 'n')
 		return (new);
-	if (infos_struct->hash == 1)
-		new = apply_hash(infos_struct, &new);
 	if (infos_struct->precision != -1)
 		new = apply_precision(infos_struct, &new);
+	if (infos_struct->hash == 1)
+		new = apply_hash(infos_struct, &new);
+	if (infos_struct->plus == 1)
+		new = apply_plus(infos_struct, &new);
+	else if (infos_struct->space == 1)
+		new = apply_space(infos_struct, &new);
 	if (infos_struct->minus == 1)
 		new = apply_minus(infos_struct, &new);
 	else if (infos_struct->field != -1)
 		new = apply_field_width(infos_struct, &new);
 	if (infos_struct->zero == 1)
 		new = apply_zero(infos_struct, &new);
-	if (infos_struct->plus == 1)
-		new = apply_plus(infos_struct, &new);
-	else if (infos_struct->space == 1)
-		new = apply_space(infos_struct, &new);
 	return (new);
 }
 
 void	translate_converter_2(char **str, t_infos *infos_struct, va_list *infos,
-int n_writt_char)
+int *n_writt_char)
 {
 	char conv;
 
@@ -51,18 +51,18 @@ int n_writt_char)
 	else if (conv == 'g')
 		*str = g_converter(infos, infos_struct->precision);
 	else if (conv == 'n')
-		*str = n_converter(infos, n_writt_char);
+		*str = n_converter(infos, *n_writt_char);
 }
 
 char	*translate_converter_1(t_infos *infos_struct, va_list *infos,
-int n_writt_char)
+int *n_writt_char)
 {
 	char	conv;
 	char	*str;
 
 	conv = infos_struct->converter;
 	if (conv == 'c')
-		str = c_converter(infos);
+		str = c_converter(infos, n_writt_char);
 	else if (conv == 's')
 		str = s_converter(infos);
 	else if (conv == 'd' || conv == 'i')
@@ -73,18 +73,16 @@ int n_writt_char)
 	else if (conv == 'u')
 		str = u_converter(infos, infos_struct->length);
 	else if (conv == 'x')
-		str = x_converter(infos, infos_struct->length,
-		infos_struct->hash);
+		str = x_converter(infos, infos_struct->length);
 	else if (conv == 'X')
-		str = grand_x_converter(infos, infos_struct->length,
-		infos_struct->hash);
+		str = grand_x_converter(infos, infos_struct->length);
 	else
 		translate_converter_2(&str, infos_struct, infos, n_writt_char);
 	return (str);
 }
 
 char	*ft_translate_format(t_infos *infos_struct, va_list *infos,
-int n_writt_char)
+int *n_writt_char)
 {
 	char *str;
 

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:06:44 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 16:24:50 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/15 16:00:48 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char *base);
 void					ft_print_bin_rep(size_t const size,
 void const *ptr);
 unsigned long long		ft_bintodec(unsigned long long bin, int start);
+int						ft_ishexa(int c);
 
 /*
 ** Following : All prototypes functions for get_next_line-like.

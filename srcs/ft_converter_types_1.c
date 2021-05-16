@@ -6,13 +6,13 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:53:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 14:55:37 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 20:59:31 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*c_converter(va_list *infos)
+char	*c_converter(va_list *infos, int *n_writt_char)
 {
 	char	*str;
 
@@ -20,6 +20,8 @@ char	*c_converter(va_list *infos)
 		return (NULL);
 	str[0] = (char)va_arg(*infos, int);
 	str[1] = '\0';
+	if (str[0] == 0)
+		*n_writt_char += 1;
 	return (str);
 }
 
@@ -62,7 +64,10 @@ char	*p_converter(va_list *infos)
 	void	*addr;
 
 	addr = (void*)va_arg(*infos, void*);
-	str = ft_hexaddr(addr);
+	if (addr == 0)
+		str = ft_strdup("(nil)");
+	else
+		str = ft_hexaddr(addr);
 	return (str);
 }
 

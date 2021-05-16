@@ -6,13 +6,13 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 22:02:50 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:09:24 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*get_infos(const char **format, va_list *infos, int n_writt_char)
+char		*get_infos(const char **format, va_list *infos, int *n_writt_char)
 {
 	t_infos	*infos_struct;
 	char	*str;
@@ -58,17 +58,11 @@ int			ft_printf(const char *format, ...)
 			printf_char(curr_char, &n_writt_char);
 		else
 		{
-			str = get_infos(&format, &infos, n_writt_char);
+			str = get_infos(&format, &infos, &n_writt_char);
 			if (str)
 				printf_str(&str, &n_writt_char);
 		}
 	}
 	va_end(infos);
 	return (n_writt_char);
-}
-
-int	main()
-{
-	ft_printf("coucou %- *.12s|\n", 21 ,"les gens");
-	printf("coucou %-*.12s|\n", 21 ,"les gens");
 }

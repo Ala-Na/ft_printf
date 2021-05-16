@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:55:51 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/14 21:24:36 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 21:44:19 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*parse_length(t_infos *infos_struct, char *str)
 	return (s);
 }
 
-char	*parse_precision(t_infos *infos_struct, char *str)
+char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 {
 	char *s;
 
@@ -52,15 +52,26 @@ char	*parse_precision(t_infos *infos_struct, char *str)
 	stock_infos_parsed(infos_struct, *s);
 	s++;
 	infos_struct->precision = 0;
-	if (ft_isdigit(*s) && infos_struct->zero == 1)
-		infos_struct->zero = 0;
-	while (ft_isdigit(*s))
+	if (*s == '*')
 	{
-		infos_struct->precision *= 10;
-		infos_struct->precision += *s - '0';
+		infos_struct->precision = (int)va_arg(*infos, int);
 		stock_infos_parsed(infos_struct, *s);
 		s++;
 	}
+	else
+	{
+		while (ft_isdigit(*s))
+		{
+			infos_struct->precision *= 10;
+			infos_struct->precision += *s - '0';
+			stock_infos_parsed(infos_struct, *s);
+			s++;
+		}
+	}
+	if (infos_struct->precision < 0)
+		infos_struct->precision = -1;
+	else
+		infos_struct->zero = 0;
 	return (s);
 }
 
@@ -73,6 +84,11 @@ char	*parse_field_width(va_list *infos, t_infos *infos_struct, char *str)
 	{
 		infos_struct->field = (int)va_arg(*infos, int);
 		stock_infos_parsed(infos_struct, *s);
+		if (infos_struct->field < 0)
+		{
+			infos_struct->field *= -1;
+			infos_struct->minus = 1;
+		}
 		s++;
 	}
 	else
