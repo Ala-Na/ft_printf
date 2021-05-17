@@ -8,7 +8,7 @@ int	main()
 	int res1;
 	int res2;
 	
-	//c
+	printf("c :\n\n");
 	res1 = ft_printf("1.%-c%-c%c*|\n", 1, '0', 0);
 	res2 = printf("1.%-c%-c%c*|\n", 1, '0', 0);
 	if (res1 != res2)
@@ -41,12 +41,14 @@ int	main()
 	res2 = printf("8. -%-2c* -%2c* |\n", 0, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	//p
+	
+	printf("\np :\n\n");
 	res1 = ft_printf("9. %10p %-10p |\n", 0, 0);
 	res2 = printf("9. %10p %-10p |\n", 0, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	//s
+	
+	printf("\ns :\n\n");
 	res1 = ft_printf("10. |%*.s| %.1s |\n", 10, "123", "4567");
 	res2 = printf("10. |%*.s| %.1s |\n", 10, "123", "4567");
 	if (res1 != res2)
@@ -87,13 +89,56 @@ int	main()
 	res2 = printf("19. %4.2s %-4.2s |\n", "123", "4567");
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	//d i
+	
+	printf("\nd/i :\n\n");
 	res1 = ft_printf("20. 0*%0-*.*d*0 0*%0*.*d*0 |\n", 2, 6, 102, 21, 10, -101);
 	res2 = printf("20. 0*%0-*.*d*0 0*%0*.*d*0 |\n", 2, 6, 102, 21, 10, -101);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	res1 = ft_printf("21. --0*|%0*.0d|*0 0*%0*.10d*0-- |\n", -2, 0, 21, 1);
 	res2 = printf("21. --0*|%0*.0d|*0 0*%0*.10d*0-- |\n", -2, 0, 21, 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+
+	printf("\nu :\n\n");
+	res1 = ft_printf("22. %.u |\n", 0);
+	res2 = printf("22. %.u |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("23. --0*%0*.0u*0 0*%0*.10u*0-- |\n", -2, 0, 21, 1);
+	res2 = printf("23. --0*%0*.0u*0 0*%0*.10u*0-- |\n", -2, 0, 21, 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("24. %.u |\n", 0);
+	res2 = printf("24. %.u |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("25.%09.0u|\n", UINT_MAX + 1);
+	res2 = printf("25.%09.0u|\n", UINT_MAX + 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("26.%010.0u|\n", UINT_MAX + 1);
+	res2 = printf("26.%010.0u|\n", UINT_MAX + 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("27.%011.0u|\n", UINT_MAX + 1);
+	res2 = printf("27.%011.0u|\n", UINT_MAX + 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("28.%.0u|\n", 0);
+	res2 = printf("28.%.0u|\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("29.%1.u|\n", 0);
+	res2 = printf("29.%1.u|\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("30.%2.u|\n", 0);
+	res2 = printf("30.%2.u|\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("31.%3.u|\n", 0);
+	res2 = printf("31.%3.u|\n", 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 }

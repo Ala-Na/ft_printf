@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:53:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/16 20:59:31 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/16 23:30:23 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,4 @@ char	*p_converter(va_list *infos)
 	else
 		str = ft_hexaddr(addr);
 	return (str);
-}
-
-char	*n_converter(va_list *infos, int n_writt_char)
-{
-	int *ptr;
-
-	ptr = (int*)va_arg(*infos, int*);
-	*ptr = n_writt_char;
-	return (NULL);
 }

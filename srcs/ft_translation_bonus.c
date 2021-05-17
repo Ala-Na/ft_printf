@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_translation.c                                   :+:      :+:    :+:   */
+/*   ft_translation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 14:51:10 by elanna           ###   ########.fr       */
+/*   Created: 2021/05/17 11:38:34 by elanna            #+#    #+#             */
+/*   Updated: 2021/05/17 18:05:22 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
+
+void	translate_converter_bonus(char **str, t_infos *infos_struct, va_list *infos,
+int *n_writt_char)
+{
+	char conv;
+
+	conv = infos_struct->converter;
+	if (conv == 'f')
+		*str = f_converter(infos, infos_struct->precision);
+	else if (conv == 'e')
+		*str = e_converter(infos, infos_struct->precision);
+	else if (conv == 'g')
+		*str = g_converter(infos, infos_struct->precision);
+	else if (conv == 'n')
+		*str = n_converter(infos, *n_writt_char);
+}
 
 char	*translate_flags(t_infos *infos_struct, char **str)
 {
@@ -21,6 +37,12 @@ char	*translate_flags(t_infos *infos_struct, char **str)
 		return (new);
 	if (infos_struct->precision != -1)
 		new = apply_precision(infos_struct, &new);
+	if (infos_struct->hash == 1)
+		new = apply_hash(infos_struct, &new);
+	if (infos_struct->plus == 1)
+		new = apply_plus(infos_struct, &new);
+	else if (infos_struct->space == 1)
+		new = apply_space(infos_struct, &new);
 	if (infos_struct->minus == 1)
 		new = apply_minus(infos_struct, &new);
 	else if (infos_struct->field != -1)
@@ -55,6 +77,8 @@ int *n_writt_char)
 		str = grand_x_converter(infos, infos_struct->length, infos_struct->precision);
 	else if (conv == 'p')
 		str = p_converter(infos);
+	else
+		translate_converter_bonus(&str, infos_struct, infos, n_writt_char);
 	return (str);
 }
 

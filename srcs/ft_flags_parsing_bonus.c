@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flags_parsing.c                                 :+:      :+:    :+:   */
+/*   ft_flags_parsing_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 22:53:39 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 22:53:54 by elanna           ###   ########.fr       */
+/*   Created: 2021/05/14 16:55:51 by elanna            #+#    #+#             */
+/*   Updated: 2021/05/17 14:55:07 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ char	*parse_flags(t_infos *infos_struct, char *str)
 	}
 	else if (*s == '0' && infos_struct->minus == 0)
 		infos_struct->zero = 1;
+	else
+		parse_bonus_flags(infos_struct, s);
 	stock_infos_parsed(infos_struct, *s);
 	s++;
 	return (s);

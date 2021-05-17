@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_hash.c                                     :+:      :+:    :+:   */
+/*   ft_translate_flag_hash_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/15 16:25:13 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/17 11:52:09 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static void	fill_hashed_g(char **str, char **hash, int s_nbr, int precision)
 {

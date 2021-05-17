@@ -6,13 +6,13 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:15:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/16 21:47:04 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:49:55 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	i_d_empty_case(char **str)
+static void	empty_case(char **str)
 {
 	if (*str)
 		free(*str);
@@ -43,11 +43,11 @@ char		*i_d_converter(va_list *infos, char length, int precision)
 		str = ft_llitoa(integer);
 	}
 	if (precision == 0 && str[0] == '0' && str[1] == 0)
-		i_d_empty_case(&str);
+		empty_case(&str);
 	return (str);
 }
 
-char		*u_converter(va_list *infos, char length)
+char		*u_converter(va_list *infos, char length, int precision)
 {
 	char				*str;
 	unsigned long long	un_integer;
@@ -70,10 +70,12 @@ char		*u_converter(va_list *infos, char length)
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
 		str = ft_ullitoa((unsigned long long)un_integer);
 	}
+	if (precision == 0 && str[0] == '0' && str[1] == 0)
+		empty_case(&str);
 	return (str);
 }
 
-char		*x_converter(va_list *infos, char length)
+char		*x_converter(va_list *infos, char length, int precision)
 {
 	char			*str;
 	unsigned int	un_integer;
@@ -96,10 +98,12 @@ char		*x_converter(va_list *infos, char length)
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789abcdef");
 	}
+	if (precision == 0 && str[0] == '0' && str[1] == 0)
+		empty_case(&str);
 	return (str);
 }
 
-char		*grand_x_converter(va_list *infos, char length)
+char		*grand_x_converter(va_list *infos, char length, int precision)
 {
 	char			*str;
 	unsigned int	un_integer;
@@ -122,5 +126,7 @@ char		*grand_x_converter(va_list *infos, char length)
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
 		str = ft_ullitobase((unsigned long long)un_integer, "0123456789ABCDEF");
 	}
+	if (precision == 0 && str[0] == '0' && str[1] == 0)
+		empty_case(&str);
 	return (str);
 }

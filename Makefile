@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/16 18:12:27 by elanna           ###   ########.fr        #
+#    Updated: 2021/05/17 22:51:59 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,19 @@ L_SRCS	= ./srcs/libft/ft_atoi.c ./srcs/libft/ft_bzero.c \
 ./srcs/libft/ft_dtoa_utils_bonus.c ./srcs/libft/ft_dtoa_bonus.c \
 ./srcs/libft/ft_ishexa_bonus.c
 
-SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_3.c \
-./srcs/ft_flag_hash.c ./srcs/ft_others_flags.c  ./srcs/ft_printf.c \
-./srcs/ft_translation.c ./srcs/ft_converter_types_2.c \
-./srcs/ft_field_and_precision.c ./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
-./srcs/ft_struct.c #
+SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
+./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
+./srcs/ft_translation.c ./srcs/ft_field_and_precision.c \
+./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
+./srcs/ft_struct.c 
+
+B_SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
+./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
+./srcs/ft_translation_bonus.c ./srcs/ft_field_and_precision.c \
+./srcs/ft_struct.c ./srcs/ft_converter_types_bonus.c \
+./srcs/ft_flags_parsing_bonus.c ./srcs/ft_translate_flags_bonus.c \
+./srcs/ft_translation_bonus.c ./srcs/ft_translate_flag_hash_bonus.c \
+./srcs/ft_flags_bonus.c ./srcs/ft_parsing_bonus.c
 
 TEST = ./test.c
 
@@ -52,6 +60,8 @@ HEADERS	= includes
 L_OBJS	= ${L_SRCS:.c=.o}
 
 OBJS	= ${SRCS:.c=.o}
+
+B_OBJS	= ${B_SRCS:.c=.o}
 
 NAME	= libftprintf.a
 
@@ -69,8 +79,11 @@ all:	${NAME}
 ${NAME}:${OBJS} ${L_OBJS}
 	ar rcs ${NAME} ${OBJS} ${L_OBJS}
 
-prep:	${OBJS} ${L_OBJS}
-	${CC} -I ${HEADERS} -g -o ${FUN} test.c ${OBJS} ${L_OBJS}
+bonus:	${B_OBJS} ${L_OBJS}
+	ar rcs ${NAME} ${L_OBJS} ${B_OBJS}
+
+prep:	bonus
+	${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
 	
 
 debug:	prep clean
@@ -80,7 +93,7 @@ leaks: 	prep clean
 	valgrind --leak-check=full ./${FUN}
 
 clean:
-	rm -f ${OBJS} ${L_OBJS}
+	rm -f ${OBJS} ${L_OBJS} ${B_OBJS}
 
 fclean: clean
 	rm -f ${NAME} ${TEMP}

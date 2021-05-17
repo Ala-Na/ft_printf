@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/16 18:09:24 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/17 11:53:05 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		*get_infos(const char **format, va_list *infos, int *n_writt_char)
 	if (infos_struct)
 	{
 		str = ft_translate_format(infos_struct, infos, n_writt_char);
-		if (infos_struct->invalid)
+		if (infos_struct->valid == 1 && infos_struct->invalid)
 			free(infos_struct->invalid);
 		free(infos_struct);
 	}
