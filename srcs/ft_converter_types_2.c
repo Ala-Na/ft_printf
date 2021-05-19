@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:15:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 22:49:55 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:27:05 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ char		*u_converter(va_list *infos, char length, int precision)
 
 char		*x_converter(va_list *infos, char length, int precision)
 {
-	char			*str;
-	unsigned int	un_integer;
+	char				*str;
+	unsigned long long	un_integer;
 
 	if (length == 0 || length == 2 || length == 4)
 	{
@@ -93,10 +93,10 @@ char		*x_converter(va_list *infos, char length, int precision)
 	else
 	{
 		if (length == 1)
-			un_integer = (unsigned long long)va_arg(*infos, unsigned long);
+			un_integer = (unsigned long)va_arg(*infos, unsigned long);
 		else
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
-		str = ft_ullitobase((unsigned long long)un_integer, "0123456789abcdef");
+		str = ft_ullitobase(un_integer, "0123456789abcdef");
 	}
 	if (precision == 0 && str[0] == '0' && str[1] == 0)
 		empty_case(&str);
@@ -105,8 +105,8 @@ char		*x_converter(va_list *infos, char length, int precision)
 
 char		*grand_x_converter(va_list *infos, char length, int precision)
 {
-	char			*str;
-	unsigned int	un_integer;
+	char				*str;
+	unsigned long long	un_integer;
 
 	if (length == 0 || length == 2 || length == 4)
 	{
@@ -121,10 +121,10 @@ char		*grand_x_converter(va_list *infos, char length, int precision)
 	else
 	{
 		if (length == 1)
-			un_integer = (unsigned long long)va_arg(*infos, unsigned long);
+			un_integer = (unsigned long)va_arg(*infos, unsigned long);
 		else
 			un_integer = (unsigned long long)va_arg(*infos, unsigned long long);
-		str = ft_ullitobase((unsigned long long)un_integer, "0123456789ABCDEF");
+		str = ft_ullitobase(un_integer, "0123456789ABCDEF");
 	}
 	if (precision == 0 && str[0] == '0' && str[1] == 0)
 		empty_case(&str);

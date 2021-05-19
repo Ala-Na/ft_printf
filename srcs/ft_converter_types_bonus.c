@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:47:52 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 11:47:21 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:56:13 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ char	*f_converter(va_list *infos, int precision)
 	if (precision == -1)
 		precision = 6;
 	str = ft_dtoa(dbl, precision, 0);
+	if ((ft_strncmp("9223372036854775808", str, 19)) == 0 && ft_strlen(str) > 20)
+		str[20] = '0';
+	else if ((ft_strncmp("-9223372036854775808", str, 20))== 0 && ft_strlen(str) > 21)
+		str[21] = '0';
 	return (str);
 }
 
@@ -48,11 +52,17 @@ char	*g_converter(va_list *infos, int precision)
 	return (str);
 }
 
-char	*n_converter(va_list *infos, int n_writt_char)
+char	*n_converter(va_list *infos, char length, int n_writt_char)
 {
-	int *ptr;
-
-	ptr = (int*)va_arg(*infos, int*);
-	*ptr = n_writt_char;
+	if (length == 0)
+		va_arg(*infos, int*)[0] = n_writt_char;
+	else if (length == 1)
+		va_arg(*infos, long int*)[0] = n_writt_char;
+	else if (length == 2)
+		va_arg(*infos, short int*)[0] = n_writt_char;
+	else if (length == 3)
+		va_arg(*infos, long long int*)[0] = n_writt_char;
+	else if (length == 4)
+		va_arg(*infos, char*)[0] = n_writt_char;
 	return (NULL);
 }

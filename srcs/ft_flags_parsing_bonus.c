@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:55:51 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 14:55:07 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:48:01 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 	}
 	if (infos_struct->precision < 0)
 		infos_struct->precision = -1;
-	else
+	if (ft_strchr("diuxX", infos_struct->converter)[0] != 0 && infos_struct->precision > 0)
 		infos_struct->zero = 0;
 	return (s);
 }

@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/17 22:51:59 by elanna           ###   ########.fr        #
+#    Updated: 2021/05/19 14:36:56 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,11 +82,16 @@ ${NAME}:${OBJS} ${L_OBJS}
 bonus:	${B_OBJS} ${L_OBJS}
 	ar rcs ${NAME} ${L_OBJS} ${B_OBJS}
 
-prep:	bonus
+prep:	${NAME}
 	${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
-	
+
+prep_b:	bonus
+	${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
 
 debug:	prep clean
+	valgrind ./${FUN}
+
+bebug:	prep_b clean
 	valgrind ./${FUN}
 
 leaks: 	prep clean

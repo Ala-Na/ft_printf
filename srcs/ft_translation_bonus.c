@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:38:34 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 18:05:22 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:30:29 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int *n_writt_char)
 	else if (conv == 'g')
 		*str = g_converter(infos, infos_struct->precision);
 	else if (conv == 'n')
-		*str = n_converter(infos, *n_writt_char);
+		*str = n_converter(infos, infos_struct->length, *n_writt_char);
 }
 
 char	*translate_flags(t_infos *infos_struct, char **str)

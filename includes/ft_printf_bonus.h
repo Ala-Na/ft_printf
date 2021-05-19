@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:22:08 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 18:04:47 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:47:42 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_bonus_flags(t_infos *infos_struct, char *s);
 void			translate_converter_bonus(char **str,
 t_infos *infos_struct, va_list *infos, int *n_writt_char);
 
-char			*n_converter(va_list *infos, int n_writt_char);
+char			*n_converter(va_list *infos, char length, int n_writt_char);
 char			*f_converter(va_list *infos, int precision);
 char			*e_converter(va_list *infos, int precision);
 char			*g_converter(va_list *infos, int precision);

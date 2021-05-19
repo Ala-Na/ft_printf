@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 16:09:43 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 16:17:08 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 21:46:20 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int precision)
 	else
 		number = ft_strdup(frac_part);
 	exp_cpy = exp_after_rounding(&number, exp, precision, int_size);
-	if (exp_cpy <= -4 || exp_cpy >= precision)
+	if (exp_cpy < -4 || exp_cpy >= precision)
 	{
 		adjust_number(&number);
 		do_exp_rounding(&number, &exp, precision - 1);

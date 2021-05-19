@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 23:41:25 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 11:51:20 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:00:44 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ char	*apply_zero(t_infos *infos_struct, char **str)
 
 	i = 0;
 	conv = infos_struct->converter;
-	if (!(ft_strchr("diuxXefGg", conv)))
+	if (!(ft_strchr("diuxXefg", conv)) || ft_strchr(*str, 'n'))
 		return (*str);
 	if (!(zero_str = malloc(sizeof(*zero_str) * (ft_strlen(*str) + 1))))
 		return (*str);
-	if ((sign = ft_strchr(*str, '+')) || (sign = ft_strchr(*str, '-')))
+	if ((conv != 'e' && conv != 'g') && (((sign = ft_strchr(*str, '+'))
+		|| (sign = ft_strchr(*str, '-')))))
 		zero_str[i++] = sign[0];
+	else if ((conv == 'e' || conv == 'g') && ft_strchr(*str, '-') != NULL)
+		zero_str[i++] = '-';
+	else if ((conv == 'e' || conv == 'g') && infos_struct->plus == 1)
+		zero_str[i++] = '+';
 	else if (infos_struct->space == 1)
 		zero_str[i++] = ' ';
 	while (ft_strchr(" -+", (*str)[i]))

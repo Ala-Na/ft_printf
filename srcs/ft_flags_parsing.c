@@ -6,11 +6,11 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:53:39 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 22:53:54 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:47:45 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 {
@@ -38,7 +38,7 @@ char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 	}
 	if (infos_struct->precision < 0)
 		infos_struct->precision = -1;
-	else
+	if (ft_strchr("diuxX", infos_struct->converter)[0] != 0 && infos_struct->precision > 0)
 		infos_struct->zero = 0;
 	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:16:32 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:42:36 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/19 18:37:21 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	bankers_or_usual_rounding(char **number, char **frac_part, unsigned i)
 	y = 0;
 	if ((*frac_part)[y] >= '5' && (*frac_part)[y] <= '9')
 	{
-		if ((*frac_part)[y + 1] == 0 && ((*number)[--i] % 2) == 0)
+		if ((*frac_part)[y + 1] == 0 && ((*number)[i - 1] % 2) == 0)
 			return ;
 		(*number)[--i] += 1;
 		while ((*number)[i] > '9')
