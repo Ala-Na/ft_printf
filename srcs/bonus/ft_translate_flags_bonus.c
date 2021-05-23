@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_translate_flags.c                               :+:      :+:    :+:   */
+/*   ft_translate_flags_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 23:41:25 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 19:56:02 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 23:02:59 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static char	find_sign(t_infos *infos_struct, char **str)
 {
@@ -29,11 +29,11 @@ static char	find_sign(t_infos *infos_struct, char **str)
 	else
 	{
 		i = 0;
-		while ((*str)[i] == ' ')
+		while (*str && (*str)[i] == ' ')
 			i++;
-		if ((*str)[i] == '-')
+		if (*str && (*str)[i] == '-')
 			return ('-');
-		else if ((*str)[i] == '+')
+		else if (*str && (*str)[i] == '+')
 			return ('+');
 	}
 	if (infos_struct->space == 1)
@@ -48,7 +48,7 @@ char	*apply_zero(t_infos *infos_struct, char **str)
 	char	sign;
 
 	i = 0;
-	if (!ft_strchr("diuxXefg", infos_struct->converter) || ft_strchr(*str, 'n')
+	if (!str || !ft_strchr("diuxXefg", infos_struct->converter) || ft_strchr(*str, 'n')
 		|| (ft_strchr("diuxX", infos_struct->converter)
 			&& infos_struct->precision != -1))
 		return (*str);
@@ -78,9 +78,9 @@ char	*apply_minus(t_infos *infos_struct, char **str)
 
 	i = 0;
 	size = ft_strlen(*str);
-	if ((*str)[0] == 0 && infos_struct->converter == 'c')
+	if (*str && (*str)[0] == 0 && infos_struct->converter == 'c')
 		size += 1;
-	if (infos_struct->field < size)
+	if (!(*str) || infos_struct->field < size)
 		return (*str);
 	minus_str = malloc(sizeof(*minus_str) * (infos_struct->field + 1));
 	if (!minus_str)

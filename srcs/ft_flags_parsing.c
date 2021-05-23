@@ -6,15 +6,24 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:53:39 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/19 15:47:45 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 17:33:04 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static void	precision_adjustments(t_infos *infos_struct)
+{
+	if (infos_struct->precision < 0)
+		infos_struct->precision = -1;
+	if (ft_strchr("diuxX", infos_struct->converter)[0] != 0
+		&& infos_struct->precision > 0)
+		infos_struct->zero = 0;
+}
+
 char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 {
-	char *s;
+	char	*s;
 
 	s = str;
 	stock_infos_parsed(infos_struct, *s);
@@ -36,27 +45,29 @@ char	*parse_precision(va_list *infos, t_infos *infos_struct, char *str)
 			s++;
 		}
 	}
-	if (infos_struct->precision < 0)
-		infos_struct->precision = -1;
-	if (ft_strchr("diuxX", infos_struct->converter)[0] != 0 && infos_struct->precision > 0)
-		infos_struct->zero = 0;
+	precision_adjustments(infos_struct);
 	return (s);
+}
+
+static void	field_width_adjustments(t_infos *infos_struct)
+{
+	if (infos_struct->field < 0)
+	{
+		infos_struct->field *= -1;
+		infos_struct->minus = 1;
+	}
 }
 
 char	*parse_field_width(va_list *infos, t_infos *infos_struct, char *str)
 {
-	char *s;
+	char	*s;
 
 	s = str;
 	if (*s == '*')
 	{
 		infos_struct->field = (int)va_arg(*infos, int);
 		stock_infos_parsed(infos_struct, *s);
-		if (infos_struct->field < 0)
-		{
-			infos_struct->field *= -1;
-			infos_struct->minus = 1;
-		}
+		field_width_adjustments(infos_struct);
 		s++;
 	}
 	else

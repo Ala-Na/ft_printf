@@ -244,7 +244,7 @@ int	main()
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	
-	*/printf("\ng :\n\n");
+	printf("\ng :\n\n");
 	res1 = ft_printf("51. %g |\n", 1.0 / 10000);
 	res2 = printf("51. %g |\n", 1.0 / 10000);
 	if (res1 != res2)
@@ -296,9 +296,9 @@ int	main()
 	res1 = ft_printf("63. %09.2g |\n", -420.0);
 	res2 = printf("63. %09.2g |\n", -420.0);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);/*
+		printf("Error : %i supposed to be %i\n", res1, res2);
 
-	printf("\nl :\n\n");
+	*/printf("\nl :\n\n");
 	res1 = ft_printf("64. %lx |\n", ULONG_MAX);
 	res2 = printf("64. %lx |\n", ULONG_MAX);
 	if (res1 != res2)
@@ -332,5 +332,5 @@ int	main()
 	res1 = ft_printf("72. %ls |\n", s);
 	res2 = printf("72. %ls |\n", s);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);
+		printf("Error : %i supposed to be %i\n", res1, res2);/*
 */}

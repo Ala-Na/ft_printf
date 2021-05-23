@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/21 17:49:30 by elanna           ###   ########.fr        #
+#    Updated: 2021/05/23 23:21:57 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,13 +45,14 @@ SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
 ./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
 ./srcs/ft_struct.c 
 
-B_SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
-./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
-./srcs/ft_translation_bonus.c ./srcs/ft_field_and_precision.c \
-./srcs/ft_struct.c ./srcs/ft_converter_types_bonus.c \
-./srcs/ft_flags_parsing_bonus.c ./srcs/ft_translate_flags_bonus.c \
-./srcs/ft_translation_bonus.c ./srcs/ft_translate_flag_hash_bonus.c \
-./srcs/ft_flags_bonus.c ./srcs/ft_parsing_bonus.c
+B_SRCS = ./srcs/bonus/ft_converter_types_1_bonus.c ./srcs/bonus/ft_converter_types_2_bonus.c \
+./srcs/bonus/ft_translate_flags_bonus.c  ./srcs/bonus/ft_printf_bonus.c \
+./srcs/bonus/ft_translation_bonus.c ./srcs/bonus/ft_field_and_precision_bonus.c \
+./srcs/bonus/ft_struct_bonus.c ./srcs/bonus/ft_converter_types_3_bonus.c \
+./srcs/bonus/ft_flags_parsing_bonus.c ./srcs/bonus/ft_translate_flags_others_bonus.c \
+./srcs/bonus/ft_translation_bonus.c ./srcs/bonus/ft_translate_flag_hash_bonus.c \
+./srcs/bonus/ft_flags_bonus.c ./srcs/bonus/ft_converter_types_4_bonus.c \
+./srcs/bonus/ft_translation_wchar_bonus.c
 
 TEST = ./test.c
 

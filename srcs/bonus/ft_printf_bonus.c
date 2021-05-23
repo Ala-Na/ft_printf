@@ -1,39 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 20:06:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 23:16:41 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-char	*get_infos(const char **format, va_list *infos, int *n_writt_char,
-char *is_char)
-{
-	t_infos	*infos_struct;
-	char	*str;
-
-	infos_struct = parse_format(format, infos);
-	if (infos_struct->converter == 'c')
-	{
-		*is_char = 1;
-		if (infos_struct->minus == 1)
-			*is_char = -1;
-	}
-	if (infos_struct)
-	{
-		str = ft_translate_format(infos_struct, infos, n_writt_char);
-		if (infos_struct->valid == 1 && infos_struct->invalid)
-			free(infos_struct->invalid);
-		free(infos_struct);
-	}
-	return (str);
-}
+#include "ft_printf_bonus.h"
 
 static void	printf_char(char **str, int *n_writt_char, char is_char)
 {
@@ -80,6 +57,41 @@ static void	printf_non_format_char(char curr_char, int *n_writt_char)
 	*n_writt_char += 1;
 }
 
+void	get_infos(const char **format, va_list *infos, int *n_writt_char,
+char *is_char)
+{
+	t_infos	*infos_struct;
+	char	*str;
+	wchar_t	*spe_str;
+
+	infos_struct = parse_format(format, infos);
+	if (infos_struct->converter == 'c')
+	{
+		*is_char = 1;
+		if (infos_struct->minus == 1)
+			*is_char = -1;
+	}
+	if (infos_struct && !(ft_strchr("cs", infos_struct->converter)
+		&& infos_struct->length == 1))
+	{
+		str = ft_translate_format(infos_struct, infos, n_writt_char);
+		if (str)
+			printf_str(&str, n_writt_char, *is_char);
+	}
+	else if (infos_struct)
+	{
+		spe_str = ft_translate_special_format(infos_struct, infos, n_writt_char);
+		if (spe_str)
+			printf_special_str(&spe_str, n_writt_char, *is_char);
+	}
+	if (infos_struct)
+	{
+		if (infos_struct->valid == 1 && infos_struct->invalid)
+			free(infos_struct->invalid);
+		free(infos_struct);
+	}
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	infos;
@@ -99,7 +111,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			is_char = 0;
-			str = get_infos(&format, &infos, &n_writt_char, &is_char);
+			get_infos(&format, &infos, &n_writt_char, &is_char);
 			if (str)
 				printf_str(&str, &n_writt_char, is_char);
 		}

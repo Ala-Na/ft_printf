@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 21:34:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 15:17:18 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:46:01 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	stock_infos_parsed(t_infos *infos_struct, char c)
 
 char	*parse_converter(t_infos *infos_struct, char *str)
 {
-	char *s;
+	char	*s;
 
 	s = str;
 	infos_struct->valid = 1;
@@ -74,7 +74,7 @@ t_infos	*parse_format(const char **format, va_list *infos)
 	infos_struct = init_infos_struct();
 	if (!infos_struct)
 		return (NULL);
-	s = (char*)*format;
+	s = (char *)*format;
 	while (ft_strchr(g_flags, (int)*s))
 		s = parse_flags(infos_struct, s);
 	if (*s == '*' || ft_isdigit(*s))

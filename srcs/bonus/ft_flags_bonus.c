@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:29:57 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 14:54:20 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 21:10:27 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_length_double(char length_code, t_infos *infos_struct, char **s)
 
 char	*parse_length(t_infos *infos_struct, char *str)
 {
-	char *s;
+	char	*s;
 
 	s = str;
 	if (*s == 'l')

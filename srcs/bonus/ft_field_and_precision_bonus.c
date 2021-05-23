@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_field_and_precision.c                           :+:      :+:    :+:   */
+/*   ft_field_and_precision_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:31:23 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 22:46:26 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 22:42:35 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 char	*apply_field_width(t_infos *infos_struct, char **str)
 {
@@ -26,7 +26,7 @@ char	*apply_field_width(t_infos *infos_struct, char **str)
 	size = (int)ft_strlen(*str);
 	if (*str && (*str)[0] == 0 && infos_struct->converter == 'c')
 		size += 1;
-	if (!str || infos_struct->minus == 1 || size >= width)
+	if (infos_struct->minus == 1 || size >= width)
 		return (*str);
 	field_str = malloc(sizeof(*field_str) * (width + 1));
 	if (!field_str)
@@ -117,7 +117,7 @@ char	*apply_precision(t_infos *infos_struct, char **str)
 
 	precision = infos_struct->precision;
 	conv = infos_struct->converter;
-	if (!str || !(ft_strchr("diuxXs", conv)))
+	if (!(ft_strchr("diuxXs", conv)))
 		return (*str);
 	else if (conv == 's')
 		apply_precision_on_str(&preci_str, *str, precision);

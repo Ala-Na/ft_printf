@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 11:52:09 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 20:43:23 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	fill_hashed_g(char **str, char **hash, int s_nbr, int precision)
 {
-	int i;
-	int y;
+	int	i;
+	int	y;
 
 	i = 0;
 	y = 0;
@@ -49,8 +49,8 @@ static char	*apply_hash_on_g(int precision, char **str)
 		s_nbr = 1;
 	if (s_nbr >= precision)
 		return (*str);
-	if (!(hash = malloc(sizeof(*hash) *
-		(ft_strlen(*str) + precision - s_nbr + 1))))
+	hash = malloc(sizeof(*hash) * (ft_strlen(*str) + precision - s_nbr + 1));
+	if (!hash)
 		return (NULL);
 	fill_hashed_g(str, &hash, s_nbr, precision);
 	return (hash);
@@ -58,12 +58,13 @@ static char	*apply_hash_on_g(int precision, char **str)
 
 static void	hash_exp_case(char *str, char **hash_str)
 {
-	int i;
-	int y;
+	int	i;
+	int	y;
 
 	i = 0;
 	y = 0;
-	if (!(*hash_str = malloc(sizeof(**hash_str) * (ft_strlen(str) + 2))))
+	*hash_str = malloc(sizeof(**hash_str) * (ft_strlen(str) + 2));
+	if (!(*hash_str))
 		return ;
 	while (str[i] != 0)
 	{
@@ -76,7 +77,7 @@ static void	hash_exp_case(char *str, char **hash_str)
 
 static char	*hash_x_case(char **str, char conv, int precision)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (precision != -1 && (*str)[0] == '0' && (*str)[1] == '1')
 	{
@@ -94,7 +95,7 @@ static char	*hash_x_case(char **str, char conv, int precision)
 	return (tmp);
 }
 
-char		*apply_hash(t_infos *infos_struct, char **str)
+char	*apply_hash(t_infos *infos_struct, char **str)
 {
 	char	conv;
 	char	*hash_str;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_struct.c                                        :+:      :+:    :+:   */
+/*   ft_struct_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 16:46:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 17:26:53 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 20:30:58 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 /*
 ** All values are initially set at 0 (except 'field' and 'precision' at -1,

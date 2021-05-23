@@ -6,16 +6,16 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:38:34 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 15:32:41 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 23:18:41 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-void	translate_converter_bonus(char **str, t_infos *infos_struct, va_list *infos,
-int *n_writt_char)
+void	translate_converter_bonus(char **str, t_infos *infos_struct,
+va_list *infos, int *n_writt_char)
 {
-	char conv;
+	char	conv;
 
 	conv = infos_struct->converter;
 	if (conv == 'f')
@@ -60,13 +60,13 @@ int *n_writt_char)
 
 	conv = infos_struct->converter;
 	str = NULL;
-	if (conv == 'c')
+	if (conv == 'c' && infos_struct->length != 1)
 		str = c_converter(infos, n_writt_char);
 	else if (conv == 's')
 		str = s_converter(infos);
 	else if (conv == 'd' || conv == 'i')
 		str = i_d_converter(infos, infos_struct->length,
-		infos_struct->precision);
+				infos_struct->precision);
 	else if (conv == '%')
 		str = percent_converter();
 	else if (conv == 'u')
@@ -74,22 +74,23 @@ int *n_writt_char)
 	else if (conv == 'x')
 		str = x_converter(infos, infos_struct->length, infos_struct->precision);
 	else if (conv == 'X')
-		str = grand_x_converter(infos, infos_struct->length, infos_struct->precision);
+		str = grand_x_converter(infos, infos_struct->length,
+				infos_struct->precision);
 	else if (conv == 'p')
 		str = p_converter(infos);
-	else
-		translate_converter_bonus(&str, infos_struct, infos, n_writt_char);
 	return (str);
 }
 
 char	*ft_translate_format(t_infos *infos_struct, va_list *infos,
 int *n_writt_char)
 {
-	char *str;
+	char	*str;
 
 	if (infos_struct->valid == 0)
 		return (infos_struct->invalid);
 	str = translate_converter(infos_struct, infos, n_writt_char);
+	if (str == NULL)
+		translate_converter_bonus(&str, infos_struct, infos, n_writt_char);
 	if (str != NULL)
 		str = translate_flags(infos_struct, &str);
 	return (str);

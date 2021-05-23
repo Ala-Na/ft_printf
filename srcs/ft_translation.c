@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 14:05:33 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 17:00:08 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int *n_writt_char)
 		str = s_converter(infos);
 	else if (conv == 'd' || conv == 'i')
 		str = i_d_converter(infos, infos_struct->length,
-		infos_struct->precision);
+				infos_struct->precision);
 	else if (conv == '%')
 		str = percent_converter();
 	else if (conv == 'u')
@@ -52,7 +52,8 @@ int *n_writt_char)
 	else if (conv == 'x')
 		str = x_converter(infos, infos_struct->length, infos_struct->precision);
 	else if (conv == 'X')
-		str = grand_x_converter(infos, infos_struct->length, infos_struct->precision);
+		str = grand_x_converter(infos, infos_struct->length,
+				infos_struct->precision);
 	else if (conv == 'p')
 		str = p_converter(infos);
 	return (str);
@@ -61,7 +62,7 @@ int *n_writt_char)
 char	*ft_translate_format(t_infos *infos_struct, va_list *infos,
 int *n_writt_char)
 {
-	char *str;
+	char	*str;
 
 	if (infos_struct->valid == 0)
 		return (infos_struct->invalid);
