@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:25:13 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:43:44 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 12:38:03 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_det_size_hexaddr(size_t a_value)
 	return (size);
 }
 
-char		*ft_hexaddr(void *addr)
+char	*ft_hexaddr(void *addr)
 {
 	char	*arr;
 	char	*full_arr;
@@ -43,7 +43,8 @@ char		*ft_hexaddr(void *addr)
 	base = "0123456789abcdef";
 	a_value = (size_t)addr;
 	i = ft_det_size_hexaddr(a_value);
-	if (!(arr = malloc(sizeof(*arr) * (i + 1))))
+	arr = malloc(sizeof(*arr) * (i + 1));
+	if (!arr)
 		return (0);
 	arr[i] = 0;
 	if (a_value == 0)

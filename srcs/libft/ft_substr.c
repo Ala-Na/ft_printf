@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:59:44 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/17 14:39:08 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:58:10 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static char	*ft_suballoc(unsigned int start, size_t len, size_t size)
 
 	if (start > size)
 	{
-		if (!(str = malloc(sizeof(*str) * (1))))
+		str = malloc(sizeof(*str) * (1));
+		if (!str)
 			return (NULL);
 	}
 	else
@@ -27,13 +28,14 @@ static char	*ft_suballoc(unsigned int start, size_t len, size_t size)
 			size = len;
 		else
 			size = size - start;
-		if (!(str = malloc(sizeof(*str) * (size + 1))))
+		str = malloc(sizeof(*str) * (size + 1));
+		if (!str)
 			return (NULL);
 	}
 	return (str);
 }
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	size;
@@ -44,7 +46,8 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	while (s[size])
 		size++;
-	if (!(str = ft_suballoc(start, len, size)))
+	str = ft_suballoc(start, len, size);
+	if (!str)
 		return (str);
 	if (start > size)
 	{

@@ -6,11 +6,27 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:46:04 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/21 15:42:27 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 16:44:18 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	ft_sub_memmove(void *dst, const void *src, size_t n)
+{
+	const char	*s_tmp;
+	char		*d_tmp;
+
+	s_tmp = (const char *)src;
+	d_tmp = (char *)dst;
+	s_tmp += n;
+	d_tmp += n;
+	while (n != 0)
+	{
+		*--d_tmp = *--s_tmp;
+		n--;
+	}
+}
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
@@ -22,20 +38,16 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	if (!n)
 		return (dst);
 	if (d_tmp <= s_tmp)
+	{
 		while (n != 0)
 		{
 			*d_tmp++ = *s_tmp++;
 			n--;
 		}
+	}
 	else
 	{
-		s_tmp += n;
-		d_tmp += n;
-		while (n != 0)
-		{
-			*--d_tmp = *--s_tmp;
-			n--;
-		}
+		ft_sub_memmove(dst, src, n);
 	}
 	return (dst);
 }

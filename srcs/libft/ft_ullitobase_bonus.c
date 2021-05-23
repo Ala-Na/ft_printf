@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:19:50 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:52:17 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 15:01:04 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ unsigned long long base_size)
 	return (size);
 }
 
-char		*ft_ullitobase(unsigned long long n, char *base)
+char	*ft_ullitobase(unsigned long long n, char *base)
 {
 	char				*arr;
 	int					i;
@@ -45,7 +45,8 @@ char		*ft_ullitobase(unsigned long long n, char *base)
 	while (base[i++] != '\0')
 		base_size++;
 	i = ft_det_size_ullitobase(n, base_size);
-	if (!(arr = malloc(sizeof(*arr) * (i + 1))))
+	arr = malloc(sizeof(*arr) * (i + 1));
+	if (!arr)
 		return (0);
 	arr[i] = 0;
 	if (n == 0)

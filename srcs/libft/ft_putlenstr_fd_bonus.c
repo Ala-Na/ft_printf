@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putlenstr_fd_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 23:50:04 by anadege           #+#    #+#             */
-/*   Updated: 2021/05/20 12:12:38 by anadege          ###   ########.fr       */
+/*   Created: 2021/05/21 17:43:47 by elanna            #+#    #+#             */
+/*   Updated: 2021/05/21 17:46:30 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putlenstr_fd(char *s, int fd, size_t len)
 {
-	unsigned char	*ret;
-
-	ret = s;
-	while (n > 0)
-	{
-		*ret++ = '\0';
-		n--;
-	}
+	write(fd, s, len);
 }

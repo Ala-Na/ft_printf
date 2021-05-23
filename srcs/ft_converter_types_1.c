@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:53:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/16 23:30:23 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/21 22:51:47 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*c_converter(va_list *infos, int *n_writt_char)
 
 	if (!(str = malloc(sizeof(*str) * 2)))
 		return (NULL);
-	str[0] = (char)va_arg(*infos, int);
+	str[0] = va_arg(*infos, int);
 	str[1] = '\0';
 	if (str[0] == 0)
 		*n_writt_char += 1;

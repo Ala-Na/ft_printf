@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/19 14:36:56 by elanna           ###   ########.fr        #
+#    Updated: 2021/05/21 17:49:30 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ L_SRCS	= ./srcs/libft/ft_atoi.c ./srcs/libft/ft_bzero.c \
 ./srcs/libft/ft_dtoa_shortrep_bonus.c ./srcs/libft/ft_ullitobase_bonus.c \
 ./srcs/libft/ft_dtoa_shortrep_utils_bonus.c ./srcs/libft/ft_print_bin_rep_bonus.c \
 ./srcs/libft/ft_dtoa_utils_bonus.c ./srcs/libft/ft_dtoa_bonus.c \
-./srcs/libft/ft_ishexa_bonus.c
+./srcs/libft/ft_ishexa_bonus.c ./srcs/libft/ft_putlenstr_fd_bonus.c
 
 SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
 ./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:13:58 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:44:40 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:13:48 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_print_bin_rep(size_t const size, void const *ptr)
 	int				i;
 	int				j;
 
-	byte = (unsigned char*)ptr;
+	byte = (unsigned char *)ptr;
 	i = size - 1;
 	while (i >= 0)
 	{

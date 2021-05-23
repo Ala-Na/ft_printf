@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 14:50:05 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/15 17:51:22 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:52:56 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static size_t	ft_det_size(char const *s1, char const *set)
 	return (i - occ);
 }
 
-static char		*ft_stralloc(char const *s1, char const *set)
+static char	*ft_stralloc(char const *s1, char const *set)
 {
 	size_t	size;
 	char	*s2;
@@ -49,17 +49,19 @@ static char		*ft_stralloc(char const *s1, char const *set)
 	{
 		while (s1[size])
 			size++;
-		if (!(s2 = malloc(sizeof(*s2) * (size + 1))))
+		s2 = malloc(sizeof(*s2) * (size + 1));
+		if (!s2)
 			return (NULL);
 		return (s2);
 	}
 	size = ft_det_size(s1, set);
-	if (!(s2 = malloc(sizeof(*s2) * (size + 1))))
+	s2 = malloc(sizeof(*s2) * (size + 1));
+	if (!s2)
 		return (NULL);
 	return (s2);
 }
 
-static void		ft_move_iterator(char const *s1, char const *set, size_t *i)
+static void	ft_move_iterator(char const *s1, char const *set, size_t *i)
 {
 	size_t	j;
 
@@ -74,7 +76,7 @@ static void		ft_move_iterator(char const *s1, char const *set, size_t *i)
 	}
 }
 
-char			*ft_strtrim_ult(char const *s1, char const *set)
+char	*ft_strtrim_ult(char const *s1, char const *set)
 {
 	char	*s2;
 	size_t	i;

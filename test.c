@@ -10,15 +10,14 @@ int	main()
 	int res1;
 	int res2;
 	
-	printf("Test : %c %c\n", 0, 1); 
 
-	printf("c :\n\n");
-	res1 = ft_printf("1.%-c%-c%c*|\n", 1, '0', 0);
-	res2 = printf("1.%-c%-c%c*|\n", 1, '0', 0);
+	/*printf("c :\n\n");
+	res1 = ft_printf("Mine 1.%-c%-c%c*|\n", 1, '0', 0);
+	res2 = printf("Prin 1.%-c%-c%c*|\n", 1, '0', 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	res1 = ft_printf("2.%c|\n", 0);
-	res2 = printf("2.%c|\n", 0);
+	res1 = ft_printf("2.%10c|\n", '0');
+	res2 = printf("2.%10c|\n", '0');
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	res1 = ft_printf("3.0%c|\n", 0);
@@ -33,19 +32,23 @@ int	main()
 	res2 = printf("5. -%-*c* -%-*c* |\n", 2, 0, -2, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	res1 = ft_printf("6. -%*c* -%-*c* |\n", -1, 0, 1, 0);
-	res2 = printf("6. -%*c* -%-*c* |\n", -1, 0, 1, 0);
+	res1 = ft_printf("6m. -%*c* -%-*c* |\n", -1, 0, 1, 0);
+	res2 = printf("6p. -%*c* -%-*c* |\n", -1, 0, 1, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	res1 = ft_printf("7. -%-*c* -%-*c* |\n", 2, 0, -2, 0);
-	res2 = printf("7. -%-*c* -%-*c* |\n", 2, 0, -2, 0);
+	res1 = ft_printf("7m. -%-*c* -%-*c* |\n", 2, 0, -2, 0);
+	res2 = printf("7p. -%-*c* -%-*c* |\n", 2, 0, -2, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	res1 = ft_printf("8. -%-2c* -%2c* |\n", 0, 0);
-	res2 = printf("8. -%-2c* -%2c* |\n", 0, 0);
+	res1 = ft_printf("8m. -%-3c* -%2c* |\n", 0, 0);
+	res2 = printf("8p. -%-3c* -%2c* |\n", 0, 0);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);/*
-	
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("Mine :%%*.s%c%%*.s*%ss%%*.s|\n", '2', "");
+	res2 = printf("Prin :%%*.s%c%%*.s*%ss%%*.s|\n", '2', "");
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+
 	printf("\np :\n\n");
 	res1 = ft_printf("9. %10p %-10p |\n", 0, 0);
 	res2 = printf("9. %10p %-10p |\n", 0, 0);
@@ -241,7 +244,7 @@ int	main()
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	
-	printf("\ng :\n\n");
+	*/printf("\ng :\n\n");
 	res1 = ft_printf("51. %g |\n", 1.0 / 10000);
 	res2 = printf("51. %g |\n", 1.0 / 10000);
 	if (res1 != res2)
@@ -293,7 +296,7 @@ int	main()
 	res1 = ft_printf("63. %09.2g |\n", -420.0);
 	res2 = printf("63. %09.2g |\n", -420.0);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);*/
+		printf("Error : %i supposed to be %i\n", res1, res2);/*
 
 	printf("\nl :\n\n");
 	res1 = ft_printf("64. %lx |\n", ULONG_MAX);
@@ -330,4 +333,4 @@ int	main()
 	res2 = printf("72. %ls |\n", s);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-}
+*/}

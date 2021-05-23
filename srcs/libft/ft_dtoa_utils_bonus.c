@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:47:28 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:43:31 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:21:45 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ char	*del_front_zero(char *to_add, int approx_size)
 		nbr_zero++;
 		i++;
 	}
-	if (nbr_zero == 0)
+	if (nbr_zero <= 0)
 		return (to_add);
-	if (!(tmp = malloc(sizeof(*tmp) * (approx_size - nbr_zero + 1))))
+	tmp = malloc(sizeof(*tmp) * (approx_size - nbr_zero + 1));
+	if (!tmp)
 		return (NULL);
 	while (to_add[i] != 0)
 		tmp[y++] = to_add[i++];
@@ -41,7 +42,7 @@ char	*del_front_zero(char *to_add, int approx_size)
 char	*add_chars_to_mall_str(char *mall_str, const char *cst,
 char front_or_end)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (front_or_end == 'f')
 		tmp = ft_strjoin(cst, mall_str);
@@ -53,7 +54,7 @@ char front_or_end)
 
 void	stock_fill(char **stock_part, char *to_add, int s_part, int s_add)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	while (s_part >= 0 && s_add >= 0)

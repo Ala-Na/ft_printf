@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:07:28 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/17 11:42:25 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:04:50 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t			i;
 
 	i = -1;
-	str = (unsigned char*)s;
+	str = (unsigned char *)s;
 	ch = (unsigned char)c;
 	while (++i < n)
 	{

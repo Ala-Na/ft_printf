@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:37:08 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:42:02 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 12:20:46 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int *i)
 	return (mant);
 }
 
-char				*get_frac_part(unsigned long long mant,
+char	*get_frac_part(unsigned long long mant,
 short exp)
 {
 	unsigned long long	frac_part;

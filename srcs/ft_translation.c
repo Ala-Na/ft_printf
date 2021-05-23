@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 14:51:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/23 14:05:33 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*translate_flags(t_infos *infos_struct, char **str)
 		new = apply_minus(infos_struct, &new);
 	else if (infos_struct->field != -1)
 		new = apply_field_width(infos_struct, &new);
-	if (infos_struct->zero == 1)
+	if (infos_struct->zero == 1 && infos_struct->minus == 0)
 		new = apply_zero(infos_struct, &new);
 	return (new);
 }

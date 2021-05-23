@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 11:56:16 by elanna            #+#    #+#             */
-/*   Updated: 2021/03/22 21:38:25 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:42:03 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strdup(const char *s)
 	size = 0;
 	while (s[size])
 		size++;
-	if (!(dest = malloc(sizeof(*dest) * (size + 1))))
+	dest = malloc(sizeof(*dest) * (size + 1));
+	if (!dest)
 		return (0);
 	while (s[i] != 0)
 	{

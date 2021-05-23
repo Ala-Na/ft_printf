@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:53:06 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:42:17 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 12:29:51 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*apply_dtwo_pten(unsigned int i)
 	char			rem;
 
 	y = 1;
-	if (!(to_add = malloc(sizeof(*to_add) * (i + 1))))
+	to_add = malloc(sizeof(*to_add) * (i + 1));
+	if (!to_add)
 		return (NULL);
 	to_add[0] = '5';
 	to_add[i] = 0;
@@ -66,7 +67,8 @@ void	apply_ptwo_init(short exp, char **to_add)
 	i = 0;
 	curr_exp = 1;
 	approx_size = exp / 3 + 1;
-	if (!(*to_add = malloc(sizeof(**to_add) * (approx_size + 1))))
+	*to_add = malloc(sizeof(**to_add) * (approx_size + 1));
+	if (!(*to_add))
 		return ;
 	while (i < approx_size)
 		(*to_add)[i++] = '0';

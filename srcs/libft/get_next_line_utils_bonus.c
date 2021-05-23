@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:01:55 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:51:39 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 21:15:03 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_content	*ft_contnew(char *buffer, int fd)
 {
 	t_content	*new;
 
-	if (!(new = malloc(sizeof(*new))))
+	new = malloc(sizeof(*new));
+	if (!new)
 		return (NULL);
 	new->buffer = ft_strdup(buffer);
 	new->fd = fd;
@@ -24,9 +25,9 @@ t_content	*ft_contnew(char *buffer, int fd)
 	return (new);
 }
 
-void		ft_contadd_back(t_content **alst, t_content *new)
+void	ft_contadd_back(t_content **alst, t_content *new)
 {
-	t_content *last;
+	t_content	*last;
 
 	if (!new)
 		return ;
@@ -39,4 +40,21 @@ void		ft_contadd_back(t_content **alst, t_content *new)
 	while (last->next)
 		last = last->next;
 	last->next = new;
+}
+
+char	*ft_strchr_for_gnl(char **s, int c, int replace)
+{
+	while (*s && **s)
+	{
+		if (**s == (char)c)
+		{
+			if (replace == 1)
+				**s = 0;
+			return ((char *)s);
+		}
+		s++;
+	}
+	if (c == 0 && **s == 0)
+		return ((char *)s);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:48 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/17 15:37:47 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/21 21:53:59 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char			*apply_precision(t_infos *infos_struct, char **str);
 ** Functions of main file
 */
 char			*get_infos(const char **format, va_list *infos,
-int *n_writt_char);
+int *n_writt_char, char *is_char);
 int				ft_printf(const char *format, ...);
 
 #endif

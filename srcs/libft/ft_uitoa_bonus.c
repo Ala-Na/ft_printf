@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:28:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:53:27 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:59:31 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ static int	ft_det_size_uitoa(unsigned int n)
 	return (size);
 }
 
-char		*ft_uitoa(unsigned int n)
+char	*ft_uitoa(unsigned int n)
 {
 	char	*arr;
 	int		i;
 
 	i = ft_det_size_uitoa(n);
-	if (!(arr = malloc(sizeof(*arr) * (i + 1))))
+	arr = malloc(sizeof(*arr) * (i + 1));
+	if (!arr)
 		return (0);
 	arr[i] = 0;
 	if (n == 0)

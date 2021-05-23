@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:20 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/23 15:41:37 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 21:30:23 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,24 @@ static char	**ft_split_init(char const *s, char c)
 			occ++;
 		i++;
 	}
-	if (!(arr = malloc(sizeof(*arr) * (occ + 1))))
+	arr = malloc(sizeof(*arr) * (occ + 1));
+	if (!arr)
 		return (0);
 	arr[occ] = 0;
 	return (arr);
 }
 
-static char	*ft_split_dup(char const *s, char c)
+static char	*ft_split_dup(char const *s, char c, int *start)
 {
 	size_t	str_size;
 	char	*str;
 
+	*start = 0;
 	str_size = 0;
 	while (s[str_size] && s[str_size] != c)
 		str_size++;
-	if (!(str = malloc(sizeof(*str) * (str_size + 1))))
+	str = malloc(sizeof(*str) * (str_size + 1));
+	if (!str)
 		return (0);
 	str_size = 0;
 	while (s[str_size] && s[str_size] != c)
@@ -54,28 +57,41 @@ static char	*ft_split_dup(char const *s, char c)
 	return (str);
 }
 
-char		**ft_split(char const *s, char c)
+static void	ft_split_init_values(size_t *i, size_t *size, int *start)
+{
+	*i = -1;
+	*size = 0;
+	*start = 0;
+}
+
+static void	ft_split_free_arr(char ***arr, size_t size)
+{
+	while (--size > 0)
+		free(*(arr[size--]));
+	free(*arr);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	size_t	size;
 	size_t	i;
 	int		start;
 	char	**arr;
 
-	if (!(arr = ft_split_init(s, c)))
+	arr = ft_split_init(s, c);
+	if (!arr)
 		return (0);
-	i = -1;
-	size = 0;
+	ft_split_init_values(&i, &size, &start);
 	while (s && s[++i])
 	{
-		start = ((i == 0 || s[i - 1] == c) ? 1 : 0);
+		if (i == 0 || s[i - 1] == c)
+			start = 1;
 		if (s[i] != c && start == 1)
 		{
-			start = 0;
-			if (!(arr[size++] = ft_split_dup(s + i, c)))
+			arr[size++] = ft_split_dup(s + i, c, &start);
+			if (!arr)
 			{
-				while (--size > 0)
-					free(arr[size--]);
-				free(arr);
+				ft_split_free_arr(&arr, size);
 				return (0);
 			}
 		}

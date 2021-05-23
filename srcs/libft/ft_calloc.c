@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 00:01:34 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/22 21:11:44 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 21:27:59 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	total = nmemb * size;
 	if (!(total))
 		total = 1;
-	if (!(ptr = malloc(total)))
+	ptr = malloc(total);
+	if (!ptr)
 		return (NULL);
 	res = (unsigned char *)ptr;
 	while (total > 0)

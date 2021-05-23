@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:40:23 by anadege           #+#    #+#             */
-/*   Updated: 2021/05/13 15:40:18 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 16:28:01 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 #  define BUFFER_SIZE 256
 # endif
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_content
+typedef struct s_content
 {
 	char				*buffer;
 	int					fd;
@@ -77,6 +77,6 @@ void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
-void (*del)(void *));
+					void (*del)(void *));
 
 #endif

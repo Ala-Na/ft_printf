@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:22:23 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/13 15:52:38 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 15:15:51 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ static int	ft_det_size_ullitoa(unsigned long long n)
 	return (size);
 }
 
-char		*ft_ullitoa(unsigned long long n)
+char	*ft_ullitoa(unsigned long long n)
 {
 	char	*arr;
 	int		i;
 
 	i = ft_det_size_ullitoa(n);
-	if (!(arr = malloc(sizeof(*arr) * (i + 1))))
+	arr = malloc(sizeof(*arr) * (i + 1));
+	if (!arr)
 		return (0);
 	arr[i] = 0;
 	if (n == 0)

@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 13:42:17 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/09 14:44:03 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/20 13:57:00 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
 	if (!new)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:40:29 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/10 12:00:38 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 13:55:33 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ static int	ft_det_size(int n)
 	return (size);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*arr;
 	unsigned int	nb;
 	unsigned int	i;
 
 	i = ft_det_size(n);
-	if (!(arr = malloc(sizeof(*arr) * (i + 1))))
+	arr = malloc(sizeof(*arr) * (i + 1));
+	if (!arr)
 		return (0);
 	arr[i] = 0;
 	nb = 0;
