@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 23:16:41 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/24 22:07:33 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static void	printf_non_format_char(char curr_char, int *n_writt_char)
 	*n_writt_char += 1;
 }
 
-void	get_infos(const char **format, va_list *infos, int *n_writt_char,
+void	get_infos_bonus(const char **format, va_list *infos, int *n_writt_char,
 char *is_char)
 {
 	t_infos	*infos_struct;
 	char	*str;
-	wchar_t	*spe_str;
+	wint_t	*spe_str;
 
 	infos_struct = parse_format(format, infos);
 	if (infos_struct->converter == 'c')
@@ -97,7 +97,6 @@ int	ft_printf(const char *format, ...)
 	va_list	infos;
 	int		n_writt_char;
 	char	curr_char;
-	char	*str;
 	char	is_char;
 
 	va_start(infos, format);
@@ -111,9 +110,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			is_char = 0;
-			get_infos(&format, &infos, &n_writt_char, &is_char);
-			if (str)
-				printf_str(&str, &n_writt_char, is_char);
+			get_infos_bonus(&format, &infos, &n_writt_char, &is_char);
 		}
 	}
 	va_end(infos);

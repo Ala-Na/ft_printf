@@ -6,23 +6,23 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 22:52:28 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 22:58:40 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/24 22:02:01 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.c"
+#include "ft_printf_bonus.h"
 
-wchar_t	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
+wint_t	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
 int *n_writt_char)
 {
-	wchar_t	*spe_str;
+	wint_t	*spe_str;
 
 	if (infos_struct->valid == 0)
-		return ((wchar_t)infos_struct->invalid);
+		return ((wint_t *)infos_struct->invalid);
 	if (infos_struct->converter == 'c')
 		spe_str = special_c_converter(infos, n_writt_char);
 	else
-		spe_str = special_s_converter(infos);
+		spe_str = (wint_t *)special_s_converter(infos);
 	if (spe_str != NULL)
 	{
 		if (infos_struct->precision != -1)
@@ -35,19 +35,19 @@ int *n_writt_char)
 	return (spe_str);
 }
 
-void	printf_special_char(wchar_t **spe_str, int *n_writt_char, char is_char)
+void	printf_special_char(wint_t **spe_str, int *n_writt_char, char is_char)
 {
 	int		i;
 	size_t	to_print;
 
-	to_print = ft_strlen(*spe_str);
+	to_print = ft_strlen((char *)*spe_str);
 	i = 0;
 	if (is_char == -1 && (*spe_str)[i] == 0)
 	{
 		to_print += 1;
 		i++;
 	}
-	while ((*str)[i++] == ' ')
+	while ((*spe_str)[i++] == ' ')
 	{
 		if (is_char == -1 && (*spe_str)[0] == 0)
 		{
@@ -61,16 +61,15 @@ void	printf_special_char(wchar_t **spe_str, int *n_writt_char, char is_char)
 	write(1, &(*spe_str), to_print);
 }
 
-void	printf_special_str(wchar_t **spe_str, int *n_writt_char, char is_char)
+void	printf_special_str(wint_t **spe_str, int *n_writt_char, char is_char)
 {
 	size_t	to_print;
 
-	to_print = ft_strlen(*spe_str);
+	to_print = ft_strlen((char *)*spe_str);
 	*n_writt_char += to_print;
-	if (*str && is_char != 0)
-		printf_special_char(str, n_writt_char, is_char);
+	if (*spe_str && is_char != 0)
+		printf_special_char(spe_str, n_writt_char, is_char);
 	else
 		write(1, &(*spe_str), to_print);
 	free(*spe_str);
 }
-
