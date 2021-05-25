@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 20:43:23 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/25 23:37:18 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	*apply_hash_on_g(int precision, char **str)
 
 	i = 0;
 	s_nbr = 0;
+	if (precision == -1)
+		precision = 6;
 	while ((*str)[0] == '0' && ((*str)[i] == '0' || (*str)[i] == '.'))
 		i++;
 	while (((*str)[i] >= '0' && (*str)[i] <= '9') || (*str)[i] == '.')
@@ -56,30 +58,35 @@ static char	*apply_hash_on_g(int precision, char **str)
 	return (hash);
 }
 
-static void	hash_exp_case(char *str, char **hash_str)
+static char	*hash_exp_case(char *str)
 {
 	int	i;
 	int	y;
+	char	*hash_str;
 
 	i = 0;
 	y = 0;
-	*hash_str = malloc(sizeof(**hash_str) * (ft_strlen(str) + 2));
-	if (!(*hash_str))
-		return ;
+	hash_str = malloc(sizeof(*hash_str) * (ft_strlen(str) + 2));
+	if (!(hash_str))
+		return (NULL);
 	while (str[i] != 0)
 	{
-		(*hash_str)[y++] = str[i++];
+		hash_str[y++] = str[i++];
 		if (str[i] == 'e')
-			(*hash_str)[y++] = '.';
+			hash_str[y++] = '.';
 	}
-	(*hash_str)[y] = 0;
+	hash_str[y] = 0;
+	return (hash_str);
 }
 
 static char	*hash_x_case(char **str, char conv, int precision)
 {
 	char	*tmp;
+	int	i;
 
-	if (precision != -1 && (*str)[0] == '0' && (*str)[1] == '1')
+	i = 0;
+	tmp = NULL;
+	if (precision != -1 && (*str)[0] == '0' && (*str)[1] == '1' && (*str)[2] != 0)
 	{
 		if (conv == 'x')
 			(*str)[1] = 'x';
@@ -87,7 +94,17 @@ static char	*hash_x_case(char **str, char conv, int precision)
 			(*str)[1] = 'X';
 		return (*str);
 	}
-	if (conv == 'x')
+	if (precision == 0 && ((*str)[0] == 0 || ((*str)[0] == '0' && (*str)[1] == 0)))
+		tmp = ft_strdup("");
+	while ((*str)[i] == '0')
+		i++;
+	if ((*str)[i] == 0)
+	{
+		if (tmp)
+			free(tmp);
+		return (*str);
+	}
+	else if (conv == 'x')
 		tmp = ft_strjoin("0x", *str);
 	else
 		tmp = ft_strjoin("0X", *str);
@@ -110,10 +127,12 @@ char	*apply_hash(t_infos *infos_struct, char **str)
 	if (!(ft_strchr(*str, '.')))
 	{
 		if (ft_strchr(*str, 'e'))
-			hash_exp_case(*str, &hash_str);
+		{
+			hash_str = hash_exp_case(*str);
+			free(*str);
+		}
 		else
 			hash_str = add_chars_to_mall_str(*str, ".", 'e');
-		free(*str);
 	}
 	if (conv == 'g')
 		hash_str = apply_hash_on_g(infos_struct->precision, &hash_str);

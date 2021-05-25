@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/24 21:42:08 by elanna           ###   ########.fr        #
+#    Updated: 2021/05/25 22:42:57 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ all:	${NAME}
 ${NAME}:${OBJS} ${L_OBJS}
 	ar rcs ${NAME} ${OBJS} ${L_OBJS}
 
-bonus:	${B_OBJS} ${L_OBJS}
+bonus:	fclean ${B_OBJS} ${L_OBJS}
 	ar rcs ${NAME} ${L_OBJS} ${B_OBJS}
 
 prep:	${NAME}

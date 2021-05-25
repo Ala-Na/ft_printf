@@ -298,7 +298,7 @@ int	main()
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 
-	*/printf("\nl :\n\n");
+	printf("\nl :\n\n");
 	res1 = ft_printf("64. %lx |\n", ULONG_MAX);
 	res2 = printf("64. %lx |\n", ULONG_MAX);
 	if (res1 != res2)
@@ -332,5 +332,41 @@ int	main()
 	res1 = ft_printf("72. %ls |\n", s);
 	res2 = printf("72. %ls |\n", s);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);/*
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	
+	*/
+	printf("\n# :\n\n");
+	res1 = ft_printf("73.  %#x |\n", 0);
+	res2 = printf("73.  %#x |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("74. %#-03.x |\n", 0);
+	res2 = printf("74. %#-03.x |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("75. %#-03.2x |\n", 0);
+	res2 = printf("75. %#-03.2x |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("76. %#-03.*x |\n", 2, 0);
+	res2 = printf("76. %#-03.*x |\n", 2, 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("77. %#-03.2x |\n", 1);
+	res2 = printf("77. %#-03.2x |\n", 1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("78. %#-03.X |\n", 0);
+	res2 = printf("78. %#-03.X |\n", 0);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("79. %#g |\n", 0.1);
+	res2 = printf("79. %#g |\n", 0.1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	res1 = ft_printf("80. %#2g |\n", 0.1);
+	res2 = printf("80. %#2g |\n", 0.1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+	/*
 */}
