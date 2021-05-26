@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/26 12:12:52 by anadege          ###   ########.fr        #
+#    Updated: 2021/05/26 14:20:41 by anadege          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,11 +61,16 @@ prep:		${NAME}
 
 prep_b:		bonus
 			${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
+prepmac:	${NAME}
+			${CC} -I ${HEADERS} -o ${FUN} test.c ${NAME}
 
-macdebug:	prep clean
+prep_bmac:	bonus
+			${CC} -I ${HEADERS} -o ${FUN} test.c ${NAME}
+
+macdebug:	prepmac clean
 			./${FUN}
 
-macbebug:	prep_b clean
+macbebug:	prep_bmac clean
 			./${FUN}
 
 debug:		prep clean
@@ -79,9 +84,11 @@ leaks: 		prep clean
 
 clean:
 			rm -f ${OBJS} ${B_OBJS}
+			make clean -C ./libft
 
 fclean: 	clean
 			rm -f ${NAME}
+			make fclean -C ./libft
 
 cclean:		clean
 			rm -f ${FUN}
