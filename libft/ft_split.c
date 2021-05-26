@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:20 by anadege           #+#    #+#             */
-/*   Updated: 2021/05/20 21:30:23 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/26 10:42:20 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,30 @@
 
 static char	**ft_split_init(char const *s, char c)
 {
-	size_t	i;
-	size_t	occ;
+	int		i;
+	int		occ;
 	char	**arr;
+	int		i_max;
 
 	i = 0;
 	occ = 0;
+	i_max = 0;
+	while (s && s[i_max])
+		i_max++;
 	while (s && s[i])
 	{
 		if (i == 0 && s[i] != c)
 			occ++;
-		else if (i - 1 > 0 && s[i - 1] == c && s[i] != c)
+		else if (i - 1 >= 0 && s[i - 1] == c && s[i] != c)
+			occ++;
+		else if (i_max != 0 && i == i_max && s[i_max] == c)
 			occ++;
 		i++;
 	}
 	arr = malloc(sizeof(*arr) * (occ + 1));
 	if (!arr)
-		return (0);
-	arr[occ] = 0;
+		return (NULL);
+	arr[occ] = NULL;
 	return (arr);
 }
 
@@ -80,7 +86,7 @@ char	**ft_split(char const *s, char c)
 
 	arr = ft_split_init(s, c);
 	if (!arr)
-		return (0);
+		return (NULL);
 	ft_split_init_values(&i, &size, &start);
 	while (s && s[++i])
 	{
@@ -89,7 +95,7 @@ char	**ft_split(char const *s, char c)
 		if (s[i] != c && start == 1)
 		{
 			arr[size++] = ft_split_dup(s + i, c, &start);
-			if (!arr)
+			if (!arr[size - 1])
 			{
 				ft_split_free_arr(&arr, size);
 				return (0);

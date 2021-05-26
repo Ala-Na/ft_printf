@@ -49,12 +49,12 @@ int	main()
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 
-	printf("\np :\n\n");
+	*/printf("\np :\n\n");
 	res1 = ft_printf("9. %10p %-10p |\n", 0, 0);
 	res2 = printf("9. %10p %-10p |\n", 0, 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	
+	/*
 	printf("\ns :\n\n");
 	res1 = ft_printf("10. |%*.s| %.1s |\n", 10, "123", "4567");
 	res2 = printf("10. |%*.s| %.1s |\n", 10, "123", "4567");
@@ -334,7 +334,7 @@ int	main()
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	
-	*/
+
 	printf("\n# :\n\n");
 	res1 = ft_printf("73.  %#x |\n", 0);
 	res2 = printf("73.  %#x |\n", 0);
@@ -368,5 +368,4 @@ int	main()
 	res2 = printf("80. %#2g |\n", 0.1);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	/*
 */}

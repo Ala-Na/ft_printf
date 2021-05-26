@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 20:59:06 by anadege           #+#    #+#             */
-/*   Updated: 2021/05/20 14:14:25 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/24 12:38:58 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *s, int fd)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 		i++;
 	write(fd, s, i);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:01:55 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/20 21:15:03 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/24 17:39:22 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	ft_contadd_back(t_content **alst, t_content *new)
 	last->next = new;
 }
 
-char	*ft_strchr_for_gnl(char **s, int c, int replace)
+char	*ft_strchr_for_gnl(char *s, int c, int replace)
 {
-	while (*s && **s)
+	while (s && *s)
 	{
-		if (**s == (char)c)
+		if (*s == (char)c)
 		{
 			if (replace == 1)
-				**s = 0;
+				*s = 0;
 			return ((char *)s);
 		}
 		s++;
 	}
-	if (c == 0 && **s == 0)
+	if (c == 0 && *s == 0)
 		return ((char *)s);
 	return (0);
 }

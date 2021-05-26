@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:37:52 by anadege           #+#    #+#             */
-/*   Updated: 2021/03/18 23:37:56 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:54:08 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	d_tmp = dst;
 	s_tmp = src;
+	if (!dst && !src)
+		return (NULL);
 	while (n != 0)
 	{
 		*d_tmp = *s_tmp;

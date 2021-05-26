@@ -6,7 +6,7 @@
 /*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:46:04 by anadege           #+#    #+#             */
-/*   Updated: 2021/05/20 16:44:18 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/24 11:55:17 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 
 	s_tmp = (const char *)src;
 	d_tmp = (char *)dst;
-	if (!n)
+	if (!n || (!dst && !src))
 		return (dst);
 	if (d_tmp <= s_tmp)
 	{

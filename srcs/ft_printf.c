@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 20:06:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/26 11:37:08 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char *is_char)
 	t_infos	*infos_struct;
 	char	*str;
 
+	str = NULL;
 	infos_struct = parse_format(format, infos);
 	if (infos_struct->converter == 'c')
 	{

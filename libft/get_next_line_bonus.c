@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: anadege <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 17:01:40 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/20 21:13:37 by elanna           ###   ########.fr       */
+/*   Created: 2021/05/24 16:43:23 by anadege           #+#    #+#             */
+/*   Updated: 2021/05/24 17:37:49 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	get_content_line(int fd, char **line, ssize_t rd, t_content **cont)
 		*line = ft_strdup("");
 		return (0);
 	}
-	ptr = ft_strchr_for_gnl(&(fd_content->buffer), '\n', 1);
+	ptr = ft_strchr_for_gnl(fd_content->buffer, '\n', 1);
 	if (ptr != NULL)
 	{
 		*line = ft_strdup(fd_content->buffer);
@@ -122,7 +122,7 @@ int	get_next_line(int fd, char **line)
 		fd_content = ft_contchr_fd(&content, fd);
 		if (!fd_content)
 			return (-1);
-		new_line = ft_strchr_for_gnl(&(fd_content->buffer), '\n', 0);
+		new_line = ft_strchr_for_gnl(fd_content->buffer, '\n', 0);
 		if (new_line != NULL)
 			break ;
 		size_read = read(fd, buffer, BUFFER_SIZE);

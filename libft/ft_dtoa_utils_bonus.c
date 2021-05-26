@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:47:28 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/21 18:21:45 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/20 12:36:20 by anadege          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*del_front_zero(char *to_add, int approx_size)
 		nbr_zero++;
 		i++;
 	}
-	if (nbr_zero <= 0)
+	if (nbr_zero == 0)
 		return (to_add);
 	tmp = malloc(sizeof(*tmp) * (approx_size - nbr_zero + 1));
 	if (!tmp)
