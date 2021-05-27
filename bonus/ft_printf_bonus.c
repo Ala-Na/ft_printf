@@ -6,14 +6,14 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 22:07:33 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:47:41 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
 static void	printf_char(char **str, int *n_writt_char, char is_char)
-{
+
 	int		i;
 	size_t	to_print;
 
@@ -32,8 +32,10 @@ static void	printf_char(char **str, int *n_writt_char, char is_char)
 			*n_writt_char += 1;
 		}
 	}
-	if (is_char == 1 && ((to_print > 1 && (*str)[to_print - 1] == 0)
+	if (is_char == 1 && ((to_print > 1 && (*str)[to_print - 1] == 0) 
 		|| *str[0] == 0))
+		to_print += 1;
+	if (is_char > 1 && (*str)[to_print] == 0)
 		to_print += 1;
 	ft_putlenstr_fd(*str, 1, to_print);
 }
@@ -62,7 +64,7 @@ char *is_char)
 {
 	t_infos	*infos_struct;
 	char	*str;
-	wint_t	*spe_str;
+	wchar_t	*spe_str;
 
 	infos_struct = parse_format(format, infos);
 	if (infos_struct->converter == 'c')

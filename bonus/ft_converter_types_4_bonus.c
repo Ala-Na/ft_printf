@@ -6,21 +6,21 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 22:24:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 22:10:45 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/27 13:51:10 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-wint_t	*special_c_converter(va_list *infos, int *n_writt_char)
+wchar_t	*special_c_converter(va_list *infos, int *n_writt_char)
 {
 
-	wint_t	*spe_str;
+	wchar_t	*spe_str;
 	
 	spe_str = malloc(sizeof(*spe_str) * 2);
 	if (!spe_str)
 		return (NULL);
-	spe_str[0] = va_arg(*infos, wint_t);
+	spe_str[0] = (wchar_t)va_arg(*infos, wint_t);
 	spe_str[1] = '\0';
 	if (spe_str[0] == 0)
 		*n_writt_char += 1;
@@ -52,11 +52,11 @@ wchar_t *special_s_converter(va_list *infos)
 	return (spe_str);
 }
 
-wint_t	*apply_special_minus(t_infos *infos_struct, wint_t **spe_str)
+wchar_t	*apply_special_minus(t_infos *infos_struct, wchar_t **spe_str)
 {
 	int		i;
 	size_t		size;
-	wint_t	*minus_str;
+	wchar_t	*minus_str;
 
 	i = 0;
 	size = 0;
@@ -83,10 +83,10 @@ wint_t	*apply_special_minus(t_infos *infos_struct, wint_t **spe_str)
 
 }
 
-wint_t	*apply_special_precision(t_infos *infos_struct, wint_t **spe_str)
+wchar_t	*apply_special_precision(t_infos *infos_struct, wchar_t **spe_str)
 {
 	int	precision;
-	wint_t	*preci_str;
+	wchar_t	*preci_str;
 	size_t	size;
 	int	i;
 
@@ -115,13 +115,13 @@ wint_t	*apply_special_precision(t_infos *infos_struct, wint_t **spe_str)
 	return (preci_str);
 }
 
-wint_t	*apply_special_field_width(t_infos *infos_struct, wint_t **spe_str)
+wchar_t	*apply_special_field_width(t_infos *infos_struct, wchar_t **spe_str)
 {
 	int		i;
 	int		y;
 	int		width;
 	size_t		size;
-	wint_t	*field_str;
+	wchar_t	*field_str;
 
 	i = 0;
 	y = 0;

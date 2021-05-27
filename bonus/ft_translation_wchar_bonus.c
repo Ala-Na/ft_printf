@@ -6,16 +6,23 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 22:52:28 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 22:02:01 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/27 14:00:14 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-wint_t	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
+size_t	ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
+{
+	if (!*s && wc == L'\0')
+		return (1);
+	return (4);
+}
+
+wchar_t	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
 int *n_writt_char)
 {
-	wint_t	*spe_str;
+	wchar_t	*spe_str;
 
 	if (infos_struct->valid == 0)
 		return ((wint_t *)infos_struct->invalid);
@@ -35,7 +42,7 @@ int *n_writt_char)
 	return (spe_str);
 }
 
-void	printf_special_char(wint_t **spe_str, int *n_writt_char, char is_char)
+void	printf_special_char(wchar_t **spe_str, int *n_writt_char, char is_char)
 {
 	int		i;
 	size_t	to_print;
@@ -61,7 +68,7 @@ void	printf_special_char(wint_t **spe_str, int *n_writt_char, char is_char)
 	write(1, &(*spe_str), to_print);
 }
 
-void	printf_special_str(wint_t **spe_str, int *n_writt_char, char is_char)
+void	printf_special_str(wchar_t **spe_str, int *n_writt_char, char is_char)
 {
 	size_t	to_print;
 

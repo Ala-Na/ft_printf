@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:06:44 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 17:35:12 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/27 22:31:49 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <wchar.h>
 # include "libft.h"
 
 void					ft_putlenstr_fd(char *s, int fd,
@@ -54,6 +55,11 @@ void					fill_content_struct(t_content **content, char *buffer,
 							int fd);
 int						get_next_line(int fd, char **line);
 
+/*
+** Following : Functions to print wide characters.
+*/
+size_t					ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
+int						ft_putwstr_fd(wchar_t *w_str, int fd);
 /*
 ** Following : All prototypes for functions dtoa-like.
 ** 3 conversions of double to ascii are possible, as those functions

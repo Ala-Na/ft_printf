@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/26 15:56:04 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/27 10:59:53 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int *is_char)
 	{
 		str = ft_translate_format(infos_struct, infos, n_writt_char);
 		if (*is_char == 1 && (infos_struct->field > (int)ft_strlen(str)))
-				*is_char *= infos_struct->field;
+			*is_char *= infos_struct->field;
 		if (infos_struct->valid == 1 && infos_struct->invalid)
 			free(infos_struct->invalid);
 		free(infos_struct);
@@ -38,13 +38,12 @@ int *is_char)
 	return (str);
 }
 
-static void	printf_char(char **str, int *n_writt_char, int  is_char)
+static void	printf_char(char **str, int *n_writt_char, int is_char)
 {
 	int		i;
 	size_t	to_print;
 
 	to_print = ft_strlen(*str);
-	//printf("is char is %i\nto_print is %zu\n", is_char, to_print);
 	i = 0;
 	if (is_char == -1 && (*str)[i] == 0)
 	{
@@ -59,7 +58,7 @@ static void	printf_char(char **str, int *n_writt_char, int  is_char)
 			*n_writt_char += 1;
 		}
 	}
-	if (is_char == 1 && ((to_print > 1 && (*str)[to_print - 1] == 0) 
+	if (is_char == 1 && ((to_print > 1 && (*str)[to_print - 1] == 0)
 		|| *str[0] == 0))
 		to_print += 1;
 	if (is_char > 1 && (*str)[to_print] == 0)

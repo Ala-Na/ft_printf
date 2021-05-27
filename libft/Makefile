@@ -6,7 +6,7 @@
 #    By: anadege <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 11:25:33 by anadege           #+#    #+#              #
-#    Updated: 2021/05/26 11:26:37 by anadege          ###   ########.fr        #
+#    Updated: 2021/05/27 22:32:46 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC = ./ft_atoi.c ./ft_bzero.c ./ft_calloc.c \
 ./ft_dtoa_shortrep_bonus.c ./ft_ullitobase_bonus.c \
 ./ft_dtoa_shortrep_utils_bonus.c ./ft_print_bin_rep_bonus.c \
 ./ft_dtoa_utils_bonus.c ./ft_dtoa_bonus.c \
-./ft_ishexa_bonus.c ./ft_putlenstr_fd_bonus.c
+./ft_ishexa_bonus.c ./ft_putlenstr_fd_bonus.c \
+./ft_putwstr_fd_bonus.c ./ft_wcrtomb_bonus.c
 
 
 HEADER = 		.
