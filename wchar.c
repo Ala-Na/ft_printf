@@ -60,8 +60,27 @@ void	ft_print_bin_rep(size_t const size, void const *ptr)
 size_t	ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 {
 	size_t	i;
+	wchar_t	w;
 
 	i = 0;
+
+	int z = (int)wc;
+	printf("\nvalue is %i\n", z);
+	w = wc;
+	ft_print_bin_rep(sizeof(w), &w);
+	
+	w = wc >> 12;
+	ft_print_bin_rep(sizeof(w), &w);
+	w = (wc >> 12) & 0x0f;
+	ft_print_bin_rep(sizeof(w), &w);
+	w = (wc >> 12) & 0x0f | 0xe0;
+	ft_print_bin_rep(sizeof(w), &w);
+	printf("\n");
+
+	w = wc >> 12;
+	ft_print_bin_rep(sizeof(w), &w);
+	w = wc >> 18;
+	ft_print_bin_rep(sizeof(w), &w);
 	if (!s)
 		return (1);
 	if (s && (unsigned)wc < 0x80)
@@ -80,6 +99,7 @@ size_t	ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 		s[i++] = (wc >> 6) & 0x3f | 0x80;
 	if (s && (unsigned)wc >= 0x80)
 		s[i++] = wc & 0x3f | 0x80;
+	printf("s is %s\n", s);
 	return (i);
 }
 

@@ -6,15 +6,16 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 20:45:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/27 22:39:11 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/29 00:17:05 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_bonus.h"
 #include <wchar.h>
 
 size_t	ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	(void)ps;
@@ -29,7 +30,7 @@ size_t	ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 	else if (s && (unsigned)wc < 0x110000)
 		s[i++] = ((wc >> 18) & 0x07) | 0xf0;
 	else if (s)
-		return (-1);
+		return (0);
 	if (s && (unsigned)wc >= 0x10000)
 		s[i++] = ((wc >> 12) & 0x3f) | 0x80;
 	if (s && (unsigned)wc >= 0x800)

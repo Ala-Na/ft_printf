@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:06:44 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 17:35:12 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/28 16:13:42 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <wchar.h>
 # include "libft.h"
 
 void					ft_putlenstr_fd(char *s, int fd,
@@ -53,6 +54,14 @@ int						get_content_line(int fd, char **line, ssize_t rd,
 void					fill_content_struct(t_content **content, char *buffer,
 							int fd);
 int						get_next_line(int fd, char **line);
+
+/*
+** Following : Functions to print wide characters.
+*/
+size_t					ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
+int						ft_putwstr_fd(wchar_t *w_str, int fd);
+int						ft_putlenwstr_fd(wchar_t *w_str,
+int fd, size_t len);
 
 /*
 ** Following : All prototypes for functions dtoa-like.

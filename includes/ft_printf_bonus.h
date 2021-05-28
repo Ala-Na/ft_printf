@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:22:08 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/24 22:03:19 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/28 23:52:44 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,13 @@ char			*apply_space(t_infos *infos_struct, char **str);
 char			*apply_plus(t_infos *infos_struct, char **str);
 char			*apply_hash(t_infos *infos_struct, char **str);
 
-wint_t	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
+char	*ft_wcrtombstr(wchar_t *w_str, int *n_writt_char, int precision, char converter);
+char	*ft_translate_special_format(t_infos *infos_struct, va_list *infos,
 int *n_writt_char);
 
-wint_t	*special_c_converter(va_list *infos, int *n_writt_char);
+wchar_t	*special_c_converter(va_list *infos, int *n_writt_char);
 wchar_t *special_s_converter(va_list *infos);
-wint_t	*apply_special_minus(t_infos *infos_struct, wint_t **spe_str);
-wint_t	*apply_special_precision(t_infos *infos_struct, wint_t **spe_str);
-wint_t	*apply_special_field_width(t_infos *infos_struct, wint_t **spe_str);
 
-void	printf_special_str(wint_t **spe_str, int *n_writt_char, char is_char);
-void	printf_special_char(wint_t **spe_str, int *n_writt_char, char is_char);
-
+void	printf_special_str(wchar_t **spe_str, int *n_writt_char);
 
 #endif

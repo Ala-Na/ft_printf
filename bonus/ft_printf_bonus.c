@@ -6,14 +6,14 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:14 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/27 13:47:41 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/28 23:31:35 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
 static void	printf_char(char **str, int *n_writt_char, char is_char)
-
+{
 	int		i;
 	size_t	to_print;
 
@@ -64,7 +64,6 @@ char *is_char)
 {
 	t_infos	*infos_struct;
 	char	*str;
-	wchar_t	*spe_str;
 
 	infos_struct = parse_format(format, infos);
 	if (infos_struct->converter == 'c')
@@ -82,9 +81,9 @@ char *is_char)
 	}
 	else if (infos_struct)
 	{
-		spe_str = ft_translate_special_format(infos_struct, infos, n_writt_char);
-		if (spe_str)
-			printf_special_str(&spe_str, n_writt_char, *is_char);
+		str = ft_translate_special_format(infos_struct, infos, n_writt_char);
+		if (str && *n_writt_char != -1)
+			printf_str(&str, n_writt_char, *is_char);
 	}
 	if (infos_struct)
 	{
@@ -113,6 +112,8 @@ int	ft_printf(const char *format, ...)
 		{
 			is_char = 0;
 			get_infos_bonus(&format, &infos, &n_writt_char, &is_char);
+			if (n_writt_char == -1)
+				break ;
 		}
 	}
 	va_end(infos);

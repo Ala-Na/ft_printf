@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwstr_fd_bonus.c                              :+:      :+:    :+:   */
+/*   ft_putlenwstr_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/27 21:48:05 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/28 17:34:50 by elanna           ###   ########.fr       */
+/*   Created: 2021/05/27 22:55:31 by elanna            #+#    #+#             */
+/*   Updated: 2021/05/27 23:09:44 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_bonus.h"
-#include <stdio.h>
 
-int	ft_putwstr_fd(wchar_t *w_str, int fd)
+int	ft_putlenwstr_fd(wchar_t *w_str, int fd, size_t len)
 {
 	mbstate_t	ps;
 	size_t		nbr_bytes;
-	char		to_print[MB_CUR_MAX+ 1];
-	int		result;
+	int			res;
+	char		to_print;
 
 	nbr_bytes = 0;
-	to_print[0] = 0;
+	res = 0;
+	to_print = 0;
 	ft_memset(&ps, 0, sizeof(ps));
-	result = 0;
-	while (w_str && *w_str)
+	while (w_str && (int)nbr_bytes != -1 && (size_t)res < len)
 	{
-		nbr_bytes = ft_wcrtomb(&to_print[0], *w_str++, &ps);
-		if (nbr_bytes == 0)
-			return (-1);
-		result += nbr_bytes;
+		nbr_bytes = ft_wcrtomb(&to_print, *w_str++, &ps);
 		write(fd, &to_print, nbr_bytes);
+		res++;
 	}
-	return (result);
+	if ((int)nbr_bytes == -1)
+		return (-1);
+	return (res);
 }

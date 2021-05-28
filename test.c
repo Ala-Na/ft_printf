@@ -3,6 +3,7 @@
 #include "libft.h"
 #include "libft_bonus.h"
 #include "ft_printf_bonus.h"
+#include <locale.h>
 #define ULONG_MIN ((unsigned long int)0)
 
 int	main()
@@ -10,7 +11,6 @@ int	main()
 	int res1;
 	int res2;
 	
-
 	/*printf("c :\n\n");
 	res1 = ft_printf("Mine 1.%-c%-c%c*|\n", 1, '0', 0);
 	res2 = printf("Prin 1.%-c%-c%c*|\n", 1, '0', 0);
@@ -297,7 +297,8 @@ int	main()
 	res2 = printf("63. %09.2g |\n", -420.0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-
+*/
+	setlocale(LC_ALL, "en_US.UTF-8");
 	printf("\nl :\n\n");
 	res1 = ft_printf("64. %lx |\n", ULONG_MAX);
 	res2 = printf("64. %lx |\n", ULONG_MAX);
@@ -323,8 +324,9 @@ int	main()
 	res2 = printf("70. %lc |\n", u'ɏ');
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
-	res1 = ft_printf("71. %lc |\n", u'ɐ');
-	res2 = printf("71. %lc |\n", u'ɐ');
+	res1 = ft_printf("71. %lc |\n", u'녕');
+	res2 = printf("71. %lc |\n", u'녕');
+	// u'ɐ'
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
 	wchar_t	 empty[] = {0};
@@ -333,6 +335,13 @@ int	main()
 	res2 = printf("72. %ls |\n", s);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);
+	wchar_t s1[] = L"안녕하세요.";
+	res1 = ft_printf("72. %.0ls |\n", s1);
+	res2 = printf("72. %.0ls |\n", s1);
+	if (res1 != res2)
+		printf("Error : %i supposed to be %i\n", res1, res2);
+
+	/*
 	
 
 	printf("\n# :\n\n");
@@ -382,10 +391,10 @@ int	main()
 	res2 = printf("|%12c|\n", 0);
 	if (res1 != res2)
 		printf("Error : %i supposed to be %i\n", res1, res2);*/
-	res1 = ft_printf("Mine :|%1c| |%12c|\n", 0, 0);
+	/*res1 = ft_printf("Mine :|%1c| |%12c|\n", 0, 0);
 	res2 = printf("Prin :|%1c| |%12c|\n", 0, 0);
 	if (res1 != res2)
-		printf("Error : %i supposed to be %i\n", res1, res2);
+		printf("Error : %i supposed to be %i\n", res1, res2);**/
 
 
 	/*
