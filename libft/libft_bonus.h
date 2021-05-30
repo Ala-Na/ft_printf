@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:06:44 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/28 16:12:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/30 00:01:39 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int						get_next_line(int fd, char **line);
 /*
 ** Following : Functions to print wide characters.
 */
-size_t						ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
+size_t					ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
 int						ft_putwstr_fd(wchar_t *w_str, int fd);
 int						ft_putlenwstr_fd(wchar_t *w_str,
-int fd, size_t len);
+							int fd, size_t len);
 
 /*
 ** Following : All prototypes for functions dtoa-like.

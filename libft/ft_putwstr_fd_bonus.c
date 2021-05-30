@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 21:48:05 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/28 17:34:50 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/30 00:02:29 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_putwstr_fd(wchar_t *w_str, int fd)
 {
 	mbstate_t	ps;
 	size_t		nbr_bytes;
-	char		to_print[MB_CUR_MAX+ 1];
-	int		result;
+	char		to_print[MB_CUR_MAX + 1];
+	int			result;
 
 	nbr_bytes = 0;
 	to_print[0] = 0;

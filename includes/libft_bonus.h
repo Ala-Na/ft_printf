@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:06:44 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/28 16:13:42 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/30 00:00:45 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int						get_next_line(int fd, char **line);
 size_t					ft_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
 int						ft_putwstr_fd(wchar_t *w_str, int fd);
 int						ft_putlenwstr_fd(wchar_t *w_str,
-int fd, size_t len);
+							int fd, size_t len);
 
 /*
 ** Following : All prototypes for functions dtoa-like.

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 23:41:25 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/26 14:46:57 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/29 23:30:39 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*apply_zero(t_infos *infos_struct, char **str)
 	char	sign;
 
 	i = 0;
-	if (!str || !ft_strchr("diuxXefg%", infos_struct->converter) || ft_strchr(*str, 'n')
-		|| (ft_strchr("diuxX%", infos_struct->converter)
+	if (!str || !ft_strchr("diuxXefg%", infos_struct->converter)
+		|| ft_strchr(*str, 'n') || (ft_strchr("diuxX%", infos_struct->converter)
 			&& infos_struct->precision != -1))
 		return (*str);
 	zero_str = malloc(sizeof(*zero_str) * (ft_strlen(*str) + 1));

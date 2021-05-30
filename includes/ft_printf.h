@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:01:48 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/26 15:49:18 by anadege          ###   ########.fr       */
+/*   Updated: 2021/05/29 23:53:45 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ extern char		*g_conversion_specifier;
 /*
 ** Structure useful to stock infos about format.
 */
-typedef struct	s_infos
+typedef struct s_infos
 {
 	char	valid;
 	char	*invalid;
@@ -64,9 +64,9 @@ char			*parse_converter(t_infos *infos_struct, char *str);
 t_infos			*parse_format(const char **format, va_list *infos);
 
 char			*parse_precision(va_list *infos,
-t_infos *infos_struct, char *str);
+					t_infos *infos_struct, char *str);
 char			*parse_field_width(va_list *infos,
-t_infos *infos_struct, char *str);
+					t_infos *infos_struct, char *str);
 char			*parse_flags(t_infos *infos_struct, char *str);
 
 /*
@@ -74,9 +74,9 @@ char			*parse_flags(t_infos *infos_struct, char *str);
 */
 char			*ft_translate_flags(t_infos *infos_struct, char **str);
 char			*translate_converter(t_infos *infos_struct,
-va_list *infos, int *n_writt_char);
+					va_list *infos, int *n_writt_char);
 char			*ft_translate_format(t_infos *infos_struct,
-va_list *infos, int *n_writt_char);
+					va_list *infos, int *n_writt_char);
 
 char			*c_converter(va_list *infos, int *n_writt_char);
 char			*s_converter(va_list *infos);
@@ -84,7 +84,7 @@ char			*percent_converter(void);
 char			*p_converter(va_list *infos);
 
 char			*i_d_converter(va_list *infos, char length,
-int precision);
+					int precision);
 char			*u_converter(va_list *infos, char length, int precision);
 char			*x_converter(va_list *infos, char length, int precision);
 char			*grand_x_converter(va_list *infos, char length, int precision);
@@ -94,16 +94,16 @@ char			*apply_minus(t_infos *infos_struct, char **str);
 
 char			*apply_field_width(t_infos *infos_struct, char **str);
 void			apply_precision_on_str(char **preci_str, char *str,
-int precision);
+					int precision);
 void			apply_precision_on_number(char **preci_str, char *str,
-int precision);
+					int precision);
 char			*apply_precision(t_infos *infos_struct, char **str);
 
 /*
 ** Functions of main file
 */
 char			*get_infos(const char **format, va_list *infos,
-int *n_writt_char, int *is_char);
+					int *n_writt_char, int *is_char);
 int				ft_printf(const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 22:24:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/28 23:53:25 by elanna           ###   ########.fr       */
+/*   Updated: 2021/05/29 01:13:28 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 wchar_t	*special_c_converter(va_list *infos, int *n_writt_char)
 {
-
 	wchar_t	*spe_str;
-	
+
 	spe_str = malloc(sizeof(*spe_str) * 2);
 	if (!spe_str)
 		return (NULL);
@@ -27,7 +26,7 @@ wchar_t	*special_c_converter(va_list *infos, int *n_writt_char)
 	return (spe_str);
 }
 
-wchar_t *special_s_converter(va_list *infos)
+wchar_t	*special_s_converter(va_list *infos)
 {
 	wchar_t	*tmp;
 	wchar_t	*spe_str;

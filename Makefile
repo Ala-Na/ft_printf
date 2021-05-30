@@ -6,11 +6,11 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/26 14:20:41 by anadege          ###   ########.fr        #
+#    Updated: 2021/05/30 17:37:31 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
+M_SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
 ./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
 ./srcs/ft_translation.c ./srcs/ft_field_and_precision.c \
 ./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
@@ -20,80 +20,48 @@ B_SRCS = ./bonus/ft_converter_types_1_bonus.c ./bonus/ft_converter_types_4_bonus
 ./bonus/ft_flags_parsing_bonus.c  ./bonus/ft_struct_bonus.c \
 ./bonus/ft_translate_flags_others_bonus.c ./bonus/ft_converter_types_2_bonus.c \
 ./bonus/ft_field_and_precision_bonus.c ./bonus/ft_parsing_bonus.c \
-./bonus/ft_translate_flag_hash_bonus.c ./bonus/ft_translation_bonus.c \
+./bonus/ft_translation_bonus.c ./bonus/ft_get_infos_bonus.c \
 ./bonus/ft_converter_types_3_bonus.c ./bonus/ft_flags_bonus.c ./bonus/ft_printf_bonus.c \
-./bonus/ft_translate_flags_bonus.c ./bonus/ft_translation_wchar_bonus.c
+./bonus/ft_translate_flags_bonus.c ./bonus/ft_translation_wchar_bonus.c \
+./bonus/ft_apply_hash_1.c ./bonus/ft_apply_hash_2.c
 
+HEADERS_FILE = includes
 
-TEST = ./test.c
-
-HEADERS	= includes
-
-OBJS	= ${SRCS:.c=.o}
+M_OBJS	= ${M_SRCS:.c=.o}
 
 B_OBJS	= ${B_SRCS:.c=.o}
 
 NAME	= libftprintf.a
 
-FUN	= ft_printf
-
-CC	= gcc
+CC	= cc
 
 CFLAGS	= -Wall -Wextra -Werror
 
-all:	${NAME}
+%.o: %.c
+		${CC} ${CFLAGS} -I ${HEADERS_FILE} -o $@ -c $<
 
-.c.o:
-	${CC} ${CFLAGS} -I ${HEADERS} -c $< -o ${<:.c=.o}
+all:		${NAME}
 
-${NAME}:	${OBJS}
-			make -C ./libft
-			cp ./libft/libft.a ./$(NAME)
-			ar rcs ${NAME} ${OBJS}
+libft.a:
+		make -C ./libft
+		cp ./libft/libft.a ./${NAME}
 
-bonus:		fclean ${B_OBJS}
-			make -C ./libft
-			cp ./libft/libft.a ./$(NAME)
-			ar rcs ${NAME} ${B_OBJS}
 
-prep:		${NAME}
-			${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
+${NAME}:	${M_OBJS} libft.a
+		ar rcs ${NAME} ${M_OBJS}
 
-prep_b:		bonus
-			${CC} -I ${HEADERS} -g -o ${FUN} test.c ${NAME}
-prepmac:	${NAME}
-			${CC} -I ${HEADERS} -o ${FUN} test.c ${NAME}
-
-prep_bmac:	bonus
-			${CC} -I ${HEADERS} -o ${FUN} test.c ${NAME}
-
-macdebug:	prepmac clean
-			./${FUN}
-
-macbebug:	prep_bmac clean
-			./${FUN}
-
-debug:		prep clean
-			valgrind ./${FUN}
-
-bebug:		prep_b clean
-			valgrind ./${FUN}
-
-leaks: 		prep clean
-		valgrind --leak-check=full ./${FUN}
+bonus:		fclean ${B_OBJS} libft.a
+		ar rcs ${NAME} ${B_OBJS}
 
 clean:
-			rm -f ${OBJS} ${B_OBJS}
-			make clean -C ./libft
+		rm -f ${M_OBJS} ${B_OBJS}
+		make clean -C ./libft
 
 fclean: 	clean
-			rm -f ${NAME}
-			make fclean -C ./libft
+		rm -f ${NAME} libft.a
+		make fclean -C ./libft
 
-cclean:		clean
-			rm -f ${FUN}
+re:		fclean all
 
-re:			fclean all
-
-.PHONY: all clean fclean re $(NAME) bonus
+.PHONY: all clean re 
 
