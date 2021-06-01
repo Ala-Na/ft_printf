@@ -6,13 +6,13 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 23:38:50 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/29 23:50:47 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/01 11:40:48 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static void	printf_char(char **str, int *n_writt_char, char is_char)
+static void	printf_char(char **str, int *n_writt_char, int is_char)
 {
 	int		i;
 	size_t	to_print;
@@ -40,11 +40,13 @@ static void	printf_char(char **str, int *n_writt_char, char is_char)
 	ft_putlenstr_fd(*str, 1, to_print);
 }
 
-static void	printf_str(char **str, int *n_writt_char, char is_char)
+static void	printf_str(char **str, int *n_writt_char, char is_char, int field)
 {
 	size_t	to_print;
 
 	to_print = ft_strlen(*str);
+	if (is_char == 1 && (int)to_print < field)
+		is_char *= field;
 	*n_writt_char += to_print;
 	if (*str && is_char != 0)
 		printf_char(str, n_writt_char, is_char);
@@ -63,13 +65,13 @@ int *n_writt_char, char *is_char)
 	{
 		str = ft_translate_format(infos_struct, infos, n_writt_char);
 		if (str)
-			printf_str(&str, n_writt_char, *is_char);
+			printf_str(&str, n_writt_char, *is_char, infos_struct->field);
 	}
 	else if (infos_struct)
 	{
 		str = ft_translate_special_format(infos_struct, infos, n_writt_char);
 		if (str && *n_writt_char != -1)
-			printf_str(&str, n_writt_char, *is_char);
+			printf_str(&str, n_writt_char, *is_char, infos_struct->field);
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/05/31 18:06:43 by anadege          ###   ########.fr        #
+#    Updated: 2021/06/01 11:04:38 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,10 @@ ${NAME}:	${M_OBJS} libft.a
 
 bonus:		fclean ${B_OBJS} libft.a
 		ar rcs ${NAME} ${B_OBJS}
+
+test:		
+		gcc test.c libftprintf.a -I includes
+		valgrind ./a.out
 
 clean:
 		rm -f ${M_OBJS} ${B_OBJS}

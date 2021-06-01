@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:31:23 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 22:42:35 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/01 11:26:38 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ char	*apply_field_width(t_infos *infos_struct, char **str)
 	y = 0;
 	width = infos_struct->field;
 	size = (int)ft_strlen(*str);
-	if (*str && (*str)[0] == 0 && infos_struct->converter == 'c')
+	if (*str && (*str)[i] == 0 && infos_struct->converter == 'c')
 		size += 1;
-	if (infos_struct->minus == 1 || size >= width)
+	if (!str || infos_struct->minus == 1 || size >= width)
 		return (*str);
 	field_str = malloc(sizeof(*field_str) * (width + 1));
 	if (!field_str)
