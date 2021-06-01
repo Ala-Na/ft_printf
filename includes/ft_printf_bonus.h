@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:22:08 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/29 23:58:44 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/01 23:03:44 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ char	*g_converter(va_list *infos, int precision);
 char	*apply_space(t_infos *infos_struct, char **str);
 char	*apply_plus(t_infos *infos_struct, char **str);
 
-void	fill_hashed_g(char **str, char **hash, int s_nbr, int precision);
+char	*fill_hashed_g(char **str, int s_nbr, int precision);
 char	*apply_hash_on_g(int precision, char **str);
 
 char	*hash_exp_case(char *str);
-char	*hash_grand_x_case(char **str, int precision);
-char	*hash_x_case(char **str, int precision);
+char	*hash_x_cases(char **str, int precision, char letter);
 char	*apply_hash(t_infos *infos_struct, char **str);
 
 char	*ft_wcrtombstr(wchar_t *w_str, int *n_writt_char, int precision,

@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:36:49 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 15:48:30 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/01 23:54:21 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	exp_after_rounding(char **number, int exp, int precision, int int_size)
 	num_size = ft_strlen(*number);
 	if (i > 0 && i <= num_size)
 	{
-		if ((*number)[i] >= '5' && (*number)[i] <= '9')
+		if ((*number)[i] >= '5' && (*number)[i--] <= '9')
 		{
-			while (--i >= 0 && (*number)[i] == '9')
+			while (i >= 0 && (*number)[i] == '9')
 			{
 				if (i > 0)
 					i--;

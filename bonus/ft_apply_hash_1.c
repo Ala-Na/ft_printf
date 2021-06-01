@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/29 16:21:13 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/01 15:49:49 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,28 @@ char	*hash_exp_case(char *str)
 	return (hash_str);
 }
 
-char	*hash_grand_x_case(char **str, int precision)
+static int	replace_by_x(char **str, int precision, char letter)
 {
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = NULL;
-	if (precision != -1 && (*str)[0] == '0'
+	if ((precision != -1 && (*str)[0] == '0'
 		&& (*str)[1] == '1' && (*str)[2] != 0)
+		|| ((*str)[0] == '0' && (*str)[1] == '0'
+		&& ((*str)[2] != 0 && (*str)[2] != ' ')))
 	{
-		(*str)[1] = 'X';
-		return (*str);
+		(*str)[1] = letter;
+		return (1);
 	}
-	if (precision == 0 && ((*str)[0] == 0
-		|| ((*str)[0] == '0' && (*str)[1] == 0)))
-		tmp = ft_strdup("");
-	while ((*str)[i] == '0')
-		i++;
-	if ((*str)[i] == 0)
-	{
-		if (tmp)
-			free(tmp);
-		return (*str);
-	}
-	tmp = ft_strjoin("0X", *str);
-	free(*str);
-	return (tmp);
+	return (0);
 }
 
-char	*hash_x_case(char **str, int precision)
+char	*hash_x_cases(char **str, int precision, char letter)
 {
 	char	*tmp;
 	int		i;
 
-	i = 0;
 	tmp = NULL;
-	if (precision != -1 && (*str)[0] == '0'
-		&& (*str)[1] == '1' && (*str)[2] != 0)
-	{
-		(*str)[1] = 'x';
+	i = replace_by_x(str, precision, letter);
+	if (i == 1)
 		return (*str);
-	}
 	if (precision == 0 && ((*str)[0] == 0
 		|| ((*str)[0] == '0' && (*str)[1] == 0)))
 		tmp = ft_strdup("");
@@ -86,7 +66,10 @@ char	*hash_x_case(char **str, int precision)
 			free(tmp);
 		return (*str);
 	}
-	tmp = ft_strjoin("0x", *str);
+	if (letter == 'x')
+		tmp = ft_strjoin("0x", *str);
+	else
+		tmp = ft_strjoin("0X", *str);
 	free(*str);
 	return (tmp);
 }
@@ -97,10 +80,8 @@ char	*apply_hash(t_infos *infos_struct, char **str)
 	char	*hash_str;
 
 	conv = infos_struct->converter;
-	if (conv == 'x')
-		return (hash_x_case(str, infos_struct->precision));
-	else if (conv == 'X')
-		return (hash_grand_x_case(str, infos_struct->precision));
+	if (conv == 'x' || conv == 'X')
+		return (hash_x_cases(str, infos_struct->precision, conv));
 	if ((conv != 'e' && conv != 'f' && conv != 'g') || ft_strchr(*str, 'i')
 		|| ft_strchr(*str, 'n'))
 		return (*str);
