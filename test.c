@@ -92,7 +92,8 @@ int	main()
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
 	char 		ch_pos_1 = 100, ch_neg_1 = -87;
-	char	str_1[] = "hello world", str_2[] = "panda", str_3[] = "this is a longer string";
+	char	str_1[] = "hello world", str_2[] = "panda";
+	char 	*str_3 = "this is a longer string";
 	char	str_empty[] = "";
 	static long long	ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
 	i = ft_printf("M: %hhi%s%lli%s|\n", ch_pos_1, str_3, ll_neg_1, str_2);

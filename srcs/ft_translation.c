@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:12:19 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/23 17:00:08 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/02 11:40:36 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*translate_flags(t_infos *infos_struct, char **str)
 	char	*new;
 
 	new = *str;
-	if (infos_struct->converter == 'n')
+	if (infos_struct->converter == 'n' || infos_struct->converter == '%')
 		return (new);
 	if (infos_struct->precision != -1)
 		new = apply_precision(infos_struct, &new);

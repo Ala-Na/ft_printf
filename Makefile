@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/06/01 11:04:38 by elanna           ###   ########.fr        #
+#    Updated: 2021/06/02 11:54:24 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 %.o: %.c
-		${CC} ${CFLAGS} -I ${HEADERS_FILE} -o $@ -c $<
+		${CC} -g ${CFLAGS} -I ${HEADERS_FILE} -o $@ -c $<
 
 all:	${NAME}
 
@@ -54,7 +54,7 @@ bonus:		fclean ${B_OBJS} libft.a
 		ar rcs ${NAME} ${B_OBJS}
 
 test:		
-		gcc test.c libftprintf.a -I includes
+		gcc -g test.c libftprintf.a -I includes
 		valgrind ./a.out
 
 clean:
