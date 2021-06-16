@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/06/02 11:54:24 by elanna           ###   ########.fr        #
+#    Updated: 2021/06/16 17:44:09 by anadege          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ CFLAGS	= -Wall -Wextra -Werror
 %.o: %.c
 		${CC} -g ${CFLAGS} -I ${HEADERS_FILE} -o $@ -c $<
 
-all:	${NAME}
+all:	bonus
 
 libft.a:
 		make -C ./libft

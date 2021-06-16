@@ -108,5 +108,9 @@ int	main()
 	y = printf("P: %.0f|\n", -9.999);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %5%|\n");
+	y = printf("P: %5%|\n");
+	if (i != y)
+		printf("error : %i should be %i\n", i , y);	
 
 }
