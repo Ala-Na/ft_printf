@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 01:23:27 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 14:28:34 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:25:12 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*apply_hash_on_g(int precision, char **str)
 		precision = 6;
 	if ((*str)[i] == '+' || (*str)[i] == '-' || (*str)[i] == ' ')
 		i++;
-	while ((*str)[i] == '0' || (*str)[i] == '.')
-		i++;
+//	while ((*str)[i] == '0' || (*str)[i] == '.')
+//		i++;
 //	if ((*str)[i] == 0)
 //		precision -= 1;
 	while (((*str)[i] >= '0' && (*str)[i] <= '9') || (*str)[i] == '.')
