@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 10:37:12 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 10:08:10 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:34:57 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*apply_space(t_infos *infos_struct, char **str)
 	char	*space_str;
 
 	i = 0;
-	if (!(ft_strchr("diuxXfge", infos_struct->converter)) || ft_strchr(*str, 'a'))
+	if (!(ft_strchr("diuxXfge", infos_struct->converter))
+		|| ft_strchr(*str, 'a'))
 		return (*str);
 	while ((*str)[i] == ' ')
 		i++;
@@ -47,7 +48,8 @@ char	*apply_plus(t_infos *infos_struct, char **str)
 	char	*plus_str;
 
 	i = 0;
-	if (!(ft_strchr("diuxXfge", infos_struct->converter)) || ft_strchr(*str, 'a'))
+	if (!(ft_strchr("diuxXfge", infos_struct->converter))
+		|| ft_strchr(*str, 'a'))
 		return (*str);
 	while ((*str)[i] == ' ')
 		i++;

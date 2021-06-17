@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 10:33:35 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:34:11 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*hash_exp_case(char *str)
 
 static int	replace_by_x(char **str, int precision, char letter)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i] == '0')

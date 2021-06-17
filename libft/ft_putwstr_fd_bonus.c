@@ -6,12 +6,11 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 21:48:05 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/30 00:02:29 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:36:06 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_bonus.h"
-#include <stdio.h>
 
 int	ft_putwstr_fd(wchar_t *w_str, int fd)
 {
