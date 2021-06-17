@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:31:23 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 14:02:59 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 14:20:59 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,12 +184,12 @@ char	*apply_precision(t_infos *infos_struct, char **str)
 
 	precision = infos_struct->precision;
 	conv = infos_struct->converter;
-	if (!(ft_strchr("diuxXsg", conv)))
+	if (!(ft_strchr("diuxXs", conv)))
 		return (*str);
 	else if (conv == 's')
 		apply_precision_on_str(&preci_str, *str, precision);
-	else if (conv == 'g')
-		apply_precision_on_g(&preci_str, *str, precision);
+//	else if (conv == 'g')
+//		apply_precision_on_g(&preci_str, *str, precision);
 	else
 		apply_precision_on_number(&preci_str, *str, precision);
 	if (*str)
