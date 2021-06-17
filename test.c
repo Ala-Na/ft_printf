@@ -120,4 +120,21 @@ int	main()
 	y = printf("P: %#0-8.5X|\n", 0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: no minus % #5.3g|\n", 0.0);
+	y = printf("P: no minus % #5.3g|\n", 0.0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: % #0-5.3f|\n", 0.0);
+	y = printf("P: % #-05.3f|\n", 0.0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: % #-5.4g|\n", 0.0);
+	y = printf("P: % #-5.4g|\n", 0.0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: % #-5.10g|\n", 13.0);
+	y = printf("P: % #-5.10g|\n", 13.0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+
 }

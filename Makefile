@@ -6,7 +6,7 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/06/16 17:44:09 by anadege          ###   ########.fr        #
+#    Updated: 2021/06/17 11:28:04 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,16 @@ CFLAGS	= -Wall -Wextra -Werror
 %.o: %.c
 		${CC} -g ${CFLAGS} -I ${HEADERS_FILE} -o $@ -c $<
 
-all:	bonus
+all:		${NAME}
 
 libft.a:
 		make -C ./libft
 		cp ./libft/libft.a ./${NAME}
 
 
-${NAME}:	${M_OBJS} libft.a
-		ar rcs ${NAME} ${M_OBJS}
+#Remettre M_OBJS au lieu de B_OBJS
+${NAME}:	${B_OBJS} libft.a
+		ar rcs ${NAME} ${B_OBJS}
 
 bonus:		fclean ${B_OBJS} libft.a
 		ar rcs ${NAME} ${B_OBJS}
