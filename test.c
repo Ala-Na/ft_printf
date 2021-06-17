@@ -144,5 +144,20 @@ int	main()
 	y = printf("P: %.1g|\n", -0.999);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-
+	i = ft_printf("M: %.1g|\n", -9.999);
+	y = printf("P: %.1g|\n", -9.999);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %.1f|\n", -9.999);
+	y = printf("P: %.1f|\n", -9.999);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %.0g|\n", -9.9);
+	y = printf("P: %.0g|\n", -9.9);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %.0f|\n", -9.999);
+	y = printf("P: %.0f|\n", -9.999);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
 }
