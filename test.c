@@ -21,7 +21,7 @@ int	main()
 	y = printf("P:%hh\n");
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);*/
-	i = ft_printf("M:%5c|\n", '\0');
+	/*i = ft_printf("M:%5c|\n", '\0');
 	y = printf("P:%5c|\n", '\0');
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -120,7 +120,7 @@ int	main()
 	y = printf("P: %#0-8.5X|\n", 0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: no minus % #5.3g|\n", 0.0);
+	*/i = ft_printf("M: no minus % #5.3g|\n", 0.0);
 	y = printf("P: no minus % #5.3g|\n", 0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -134,6 +134,10 @@ int	main()
 		printf("error : %i should be %i\n", i, y);
 	i = ft_printf("M: % #-5.10g|\n", 13.0);
 	y = printf("P: % #-5.10g|\n", 13.0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %#.1g|\n", 0.0);
+	y = printf("P: %#.1g|\n", 0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
 
