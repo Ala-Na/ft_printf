@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:53:07 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 23:58:15 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/18 00:23:18 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,15 @@ char	*percent_converter(void)
 /*
 ** Under linux : change "0x0" for "(nil)" when addr == 0
 */
-char	*p_converter(va_list *infos)
+char	*p_converter(va_list *infos, int precision)
 {
 	char	*str;
 	void	*addr;
 
 	addr = (void *)va_arg(*infos, void *);
-	if (addr == 0)
+	if (addr == 0 && precision == 0)
+		str = ft_strdup("0x");
+	else if (addr == 0)
 		str = ft_strdup("0x0");
 	else
 		str = ft_hexaddr(addr);

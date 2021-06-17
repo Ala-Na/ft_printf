@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:22:08 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 23:46:53 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/18 00:24:05 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_translate_format(t_infos *infos_struct,
 char	*c_converter(va_list *infos, int *n_writt_char);
 char	*s_converter(va_list *infos);
 char	*percent_converter(void);
-char	*p_converter(va_list *infos);
+char	*p_converter(va_list *infos, int precision);
 
 char	*i_d_converter(va_list *infos, char length,
 			int precision);

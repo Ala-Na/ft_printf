@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:38:34 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/18 00:00:26 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/18 00:23:39 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int *n_writt_char)
 		str = grand_x_converter(infos, infos_struct->length,
 				infos_struct->precision);
 	else if (conv == 'p')
-		str = p_converter(infos);
+		str = p_converter(infos, infos_struct->precision);
 	return (str);
 }
 

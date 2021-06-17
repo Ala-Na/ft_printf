@@ -177,4 +177,9 @@ int	main()
 	y = printf("P: %#2g|\n", 0.01);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %-16.p|\n", 0);
+	y = printf("P: %-16.p|\n", 0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+
 }
