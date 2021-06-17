@@ -47,7 +47,7 @@ int	main()
 	y = printf("P: % .7f|\n", special);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: %.13g\n",        1.025978548534310421);
+	*/i = ft_printf("M: %.13g\n",        1.025978548534310421);
 	y = printf("P: %.13g\n",        1.025978548534310421);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);	
@@ -83,7 +83,7 @@ int	main()
 	y = printf("P: % #-5.1g|\n", 7.3);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: %+6g\n", special);
+	/*i = ft_printf("M: %+6g\n", special);
 	y = printf("P: %+6g\n", special);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -100,11 +100,11 @@ int	main()
 	y = printf("P: %hhi%s%lli%s|\n", ch_pos_1, str_3, ll_neg_1, str_2);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: %.1g|\n", -9.999);
+	*/i = ft_printf("M: %.1g|\n", -9.999);
 	y = printf("P: %.1g|\n", -9.999);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: %.0f|\n", -9.999);
+	/*i = ft_printf("M: %.0f|\n", -9.999);
 	y = printf("P: %.0f|\n", -9.999);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -120,15 +120,15 @@ int	main()
 	y = printf("P: %#0-8.5X|\n", 0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: no minus % #5.3g|\n", -0.0);
+	*/i = ft_printf("M: no minus % #5.3g|\n", -0.0);
 	y = printf("P: no minus % #5.3g|\n", -0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: % #0-5.3f|\n", 0.0);
+	/*i = ft_printf("M: % #0-5.3f|\n", 0.0);
 	y = printf("P: % #-05.3f|\n", 0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	i = ft_printf("M: % #-5.4g|\n", 0.0);
+	*/i = ft_printf("M: % #-5.4g|\n", 0.0);
 	y = printf("P: % #-5.4g|\n", 0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -136,7 +136,7 @@ int	main()
 	y = printf("P: % #-5.10g|\n", 13.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
-	*/i = ft_printf("M: %#.1g|\n", 0.0);
+	i = ft_printf("M: %#.1g|\n", 0.0);
 	y = printf("P: %#.1g|\n", 0.0);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
@@ -164,4 +164,16 @@ int	main()
 	y = printf("P: %.0f|\n", -9.999);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);*/
+	i = ft_printf("M: %#g|\n", 0.1);
+	y = printf("P: %#g|\n", 0.1);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %#2g|\n", 0.1);
+	y = printf("P: %#2g|\n", 0.1);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %#2g|\n", 0.01);
+	y = printf("P: %#2g|\n", 0.01);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
 }
