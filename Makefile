@@ -6,15 +6,15 @@
 #    By: elanna <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 16:18:10 by elanna            #+#    #+#              #
-#    Updated: 2021/06/17 11:28:04 by elanna           ###   ########.fr        #
+#    Updated: 2021/06/17 20:09:19 by elanna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-M_SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
-./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
-./srcs/ft_translation.c ./srcs/ft_field_and_precision.c \
-./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
-./srcs/ft_struct.c 
+#M_SRCS = ./srcs/ft_converter_types_1.c ./srcs/ft_converter_types_2.c \
+#./srcs/ft_translate_flags.c  ./srcs/ft_printf.c \
+#./srcs/ft_translation.c ./srcs/ft_field_and_precision.c \
+#./srcs/ft_flags_parsing.c ./srcs/ft_parsing.c \
+#./srcs/ft_struct.c 
 
 B_SRCS = ./bonus/ft_converter_types_1_bonus.c ./bonus/ft_converter_types_4_bonus.c \
 ./bonus/ft_flags_parsing_bonus.c  ./bonus/ft_struct_bonus.c \
@@ -27,7 +27,7 @@ B_SRCS = ./bonus/ft_converter_types_1_bonus.c ./bonus/ft_converter_types_4_bonus
 
 HEADERS_FILE = includes
 
-M_OBJS	= ${M_SRCS:.c=.o}
+#M_OBJS	= ${M_SRCS:.c=.o}
 
 B_OBJS	= ${B_SRCS:.c=.o}
 
@@ -51,19 +51,18 @@ libft.a:
 ${NAME}:	${B_OBJS} libft.a
 		ar rcs ${NAME} ${B_OBJS}
 
-bonus:		fclean ${B_OBJS} libft.a
-		ar rcs ${NAME} ${B_OBJS}
+bonus:		${NAME}
 
-test:		
-		gcc -g test.c libftprintf.a -I includes
-		valgrind ./a.out
+#test:		
+#		gcc -g test.c libftprintf.a -I includes
+#		valgrind ./a.out
 
 clean:
-		rm -f ${M_OBJS} ${B_OBJS}
+		rm -f ${B_OBJS}
 		make clean -C ./libft
 
 fclean: 	clean
-		rm -f ${NAME} libft.a
+		rm -f ${NAME}
 		make fclean -C ./libft
 
 re:		fclean all
