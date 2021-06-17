@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_converter_types_3_bonus.c                       :+:      :+:    :+:   */
+/*   ft_converter_types_3.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:47:52 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/01 21:50:12 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 23:58:29 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 char	*f_converter(va_list *infos, int precision)
 {

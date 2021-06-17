@@ -6,11 +6,11 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 01:23:27 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 23:02:08 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 23:58:03 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 char	*fill_hashed_g(char **str, int precision, int non_signi_digits,
 			int not_digit)

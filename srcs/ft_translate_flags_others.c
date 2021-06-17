@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_translate_flags_others_bonus.c                  :+:      :+:    :+:   */
+/*   ft_translate_flags_others.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 10:37:12 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 16:34:57 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/18 00:00:08 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 char	*apply_space(t_infos *infos_struct, char **str)
 {

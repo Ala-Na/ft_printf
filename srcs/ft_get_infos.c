@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_infos_bonus.c                               :+:      :+:    :+:   */
+/*   ft_get_infos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 23:38:50 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/01 11:40:48 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 23:59:18 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static void	printf_char(char **str, int *n_writt_char, int is_char)
 {
@@ -75,7 +75,7 @@ int *n_writt_char, char *is_char)
 	}
 }
 
-void	get_infos_bonus(const char **format, va_list *infos, int *n_writt_char,
+void	get_infos(const char **format, va_list *infos, int *n_writt_char,
 char *is_char)
 {
 	t_infos	*infos_struct;

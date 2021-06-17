@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/10 21:34:53 by elanna            #+#    #+#             */
-/*   Updated: 2021/05/31 11:28:50 by anadege          ###   ########.fr       */
+/*   Created: 2021/05/17 15:16:00 by elanna            #+#    #+#             */
+/*   Updated: 2021/06/17 23:59:29 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*g_flags = "-0";
-char	*g_conversion_specifier = "cspdiuxX%";
+char	*g_conversion_specifier = "cspdiuxXfgen%";
+char	*g_flags = "-0#+ ";
 
 /*
 ** Function to visualize the content of struct
@@ -81,6 +81,8 @@ t_infos	*parse_format(const char **format, va_list *infos)
 		s = parse_field_width(infos, infos_struct, s);
 	if (*s == '.')
 		s = parse_precision(infos, infos_struct, s);
+	if (*s == 'l' || *s == 'h')
+		s = parse_length(infos_struct, s);
 	if (ft_strchr(g_conversion_specifier, *s))
 		s = parse_converter(infos_struct, s);
 	*format = s;

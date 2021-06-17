@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
+#include <stdio.h>
 #define DBL_NAN    0x7FF0000000100000
 
 int	main()

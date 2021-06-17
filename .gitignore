@@ -53,3 +53,5 @@ dkms.conf
 pft/
 pft_2019/
 ./pft/
+mandatory/
+test.c
