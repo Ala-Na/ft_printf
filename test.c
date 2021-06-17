@@ -111,6 +111,13 @@ int	main()
 	i = ft_printf("M: %5%|\n");
 	y = printf("P: %5%|\n");
 	if (i != y)
-		printf("error : %i should be %i\n", i , y);	
-
+		printf("error : %i should be %i\n", i , y);
+	i = ft_printf("M: %#0-8.5X|\n", 34);
+	y = printf("P: %#0-8.5X|\n", 34);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %#0-8.5X|\n", 0);
+	y = printf("P: %#0-8.5X|\n", 0);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
 }

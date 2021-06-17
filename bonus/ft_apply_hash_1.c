@@ -6,7 +6,7 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:30:02 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/01 15:49:49 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 10:33:35 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,15 @@ char	*hash_exp_case(char *str)
 
 static int	replace_by_x(char **str, int precision, char letter)
 {
+	int i;
+
+	i = 0;
+	while ((*str)[i] == '0')
+		i++;
+	if ((*str)[i] == 0 || (*str)[i] == ' ')
+		return (1);
 	if ((precision != -1 && (*str)[0] == '0'
-		&& (*str)[1] == '1' && (*str)[2] != 0)
-		|| ((*str)[0] == '0' && (*str)[1] == '0'
-		&& ((*str)[2] != 0 && (*str)[2] != ' ')))
+		&& (*str)[1] == '1' && (*str)[2] != 0))
 	{
 		(*str)[1] = letter;
 		return (1);
