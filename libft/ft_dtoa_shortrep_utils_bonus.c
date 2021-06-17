@@ -6,12 +6,11 @@
 /*   By: elanna <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:36:49 by elanna            #+#    #+#             */
-/*   Updated: 2021/06/17 17:40:57 by elanna           ###   ########.fr       */
+/*   Updated: 2021/06/17 19:59:10 by elanna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_bonus.h"
-#include <stdio.h>
 
 void	del_last_zero(char **number, int size)
 {
@@ -46,8 +45,10 @@ int	exp_after_rounding(char **number, int exp, int precision, int int_size)
 	int	i;
 	int	num_size;
 
-	if (int_size <= precision)
+	if (int_size < precision)
 		i = precision + 1 - int_size;
+	else if (int_size == precision)
+		i = precision;
 	else
 		i = precision + 1;
 	num_size = ft_strlen(*number);

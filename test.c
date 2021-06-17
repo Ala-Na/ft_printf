@@ -156,6 +156,10 @@ int	main()
 	y = printf("P: %.0g|\n", -9.9);
 	if (i != y)
 		printf("error : %i should be %i\n", i, y);
+	i = ft_printf("M: %.3g|\n", -953.125);
+	y = printf("P: %.3g|\n", -953.125);
+	if (i != y)
+		printf("error : %i should be %i\n", i, y);
 	/*i = ft_printf("M: %.0f|\n", -9.999);
 	y = printf("P: %.0f|\n", -9.999);
 	if (i != y)
